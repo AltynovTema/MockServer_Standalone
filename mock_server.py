@@ -12,9 +12,10 @@
 import uuid
 from datetime import datetime
 from typing import Dict, List, Any, Optional
-from fastapi import FastAPI, Request, HTTPException, Query
+from fastapi import FastAPI, Request, HTTPException, Query, Form
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
+from typing import Optional, Dict, Any
 
 from data_store import DataStore, RequestHistoryStore
 from validators import EntityValidator, RequestValidator, ValidationError
@@ -131,18 +132,31 @@ async def log_requests(request: Request, call_next):
 # ============================================================================
 
 @app.post("/entities", status_code=201)
-async def create_entity(entity: EntityCreate):
+async def create_entity(request: Request):
     """
     Создание новой сущности с валидацией
     
-    - **name**: имя сущности (опционально, макс. 200 символов)
-    - **data**: дополнительные данные в формате JSON (опционально)
+    Поддерживает как JSON, так и form-encoded данные
     
     Возвращает статус 201 Created и сгенерированный ID
     """
     try:
+        # Определяем тип контента и парсим данные соответствующим образом
+        content_type = request.headers.get("Content-Type", "")
+        
+        if "application/json" in content_type:
+            raw_data = await request.json()
+        elif "application/x-www-form-urlencoded" in content_type:
+            form_data = await request.form()
+            raw_data = dict(form_data)
+        else:
+            raise HTTPException(
+                status_code=415, 
+                detail="Unsupported Media Type. Use JSON or form-encoded data."
+            )
+        
         # Валидация данных
-        validated_data = EntityValidator.validate_create(entity.dict())
+        validated_data = EntityValidator.validate_create(raw_data)
         
         # Генерация ID
         entity_id = str(uuid.uuid4())

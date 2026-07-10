@@ -2458,8 +2458,291 @@
         "content-length": "174",
         "content-type": "application/json"
       }
+    },
+    {
+      "id": "758fd083-6572-45c7-8f29-bf6c3ad4fae0",
+      "timestamp": "2026-07-10T23:24:24.868820",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/dock",
+      "path": "/dock",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "cache-control": "max-age=0",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "22",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "589f9d4e-8097-439a-987f-1de586f4dea5",
+      "timestamp": "2026-07-10T23:24:26.778288",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/dock",
+      "path": "/dock",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "cache-control": "max-age=0",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "22",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "e9f628e6-78e2-44a0-8e48-f5e4c748511e",
+      "timestamp": "2026-07-10T23:24:29.177273",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/docs",
+      "path": "/docs",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1019",
+        "content-type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "id": "ff8ea76e-4fd2-42b9-8c05-c6d485dc9d9e",
+      "timestamp": "2026-07-10T23:24:29.247732",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/openapi.json",
+      "path": "/openapi.json",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "application/json,*/*",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://127.0.0.1:8000/docs",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "10959",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "7083689e-b317-4fe9-bc3e-0cb7579839c9",
+      "timestamp": "2026-07-10T23:24:45.361355",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/",
+      "path": "/",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1353",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "f9a08d64-887c-4402-8f18-34f98c2f1b88",
+      "timestamp": "2026-07-10T23:24:45.365412",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/inspector/history?limit=35",
+      "path": "/inspector/history",
+      "query_string": "limit=35",
+      "query_params": {
+        "limit": "35"
+      },
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "24403",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "92fac02e-e1e5-4193-941e-37a22aae4bb3",
+      "timestamp": "2026-07-10T23:24:45.370526",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities?filter=active&filter=featured&filter=sale",
+      "path": "/entities",
+      "query_string": "filter=active&filter=featured&filter=sale",
+      "query_params": {
+        "filter": "sale"
+      },
+      "query_params_multi": {
+        "filter": [
+          "active",
+          "featured",
+          "sale"
+        ]
+      },
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "586",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "ecb12091-e679-4305-ad14-0d3faf8c20c1",
+      "timestamp": "2026-07-10T23:24:45.373173",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "188",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Artem\", \"lastname\": \"Altynov\", \"totalprice\": 15000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "200",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "3ec781d1-e80c-47fd-82f8-78781660d4db",
+      "timestamp": "2026-07-10T23:24:45.377012",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "188",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Artem\", \"lastname\": \"Altynov\", \"totalprice\": 15000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "200",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "586e1919-fc6d-45b9-8b24-3c887d3b9294",
+      "timestamp": "2026-07-10T23:24:45.380106",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/booking/2",
+      "path": "/booking/2",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "174",
+        "content-type": "application/json"
+      }
     }
   ],
-  "total_requests": 90,
-  "last_updated": "2026-07-10T23:03:05.947798"
+  "total_requests": 100,
+  "last_updated": "2026-07-10T23:24:45.381114"
 }
