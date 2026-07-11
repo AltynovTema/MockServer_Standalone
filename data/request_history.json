@@ -2741,8 +2741,1345 @@
         "content-length": "174",
         "content-type": "application/json"
       }
+    },
+    {
+      "id": "09bc7262-ac7f-4dab-805f-0d8cddf1330c",
+      "timestamp": "2026-07-11T09:11:08.352006",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/docs",
+      "path": "/docs",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "cache-control": "max-age=0",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1019",
+        "content-type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "id": "b31b4bc5-db64-43ed-91b6-8c737d1b55f2",
+      "timestamp": "2026-07-11T09:11:08.457970",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/openapi.json",
+      "path": "/openapi.json",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "application/json,*/*",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://127.0.0.1:8000/docs",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "10959",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "592fbb02-69b2-436c-9e8f-2dc2c5439ceb",
+      "timestamp": "2026-07-11T09:11:42.296437",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/",
+      "path": "/",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1353",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "313add51-81ff-4e0c-b2d4-10d55fe32d6b",
+      "timestamp": "2026-07-11T09:11:42.301849",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/inspector/history?limit=35",
+      "path": "/inspector/history",
+      "query_string": "limit=35",
+      "query_params": {
+        "limit": "35"
+      },
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "24653",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "85a6f27c-09a8-45a1-a989-6f248bf9b746",
+      "timestamp": "2026-07-11T09:11:42.306780",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities?filter=active&filter=featured&filter=sale",
+      "path": "/entities",
+      "query_string": "filter=active&filter=featured&filter=sale",
+      "query_params": {
+        "filter": "sale"
+      },
+      "query_params_multi": {
+        "filter": [
+          "active",
+          "featured",
+          "sale"
+        ]
+      },
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "976",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "5b84f007-32a4-460b-a898-54c5658af6d0",
+      "timestamp": "2026-07-11T09:11:42.310777",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "188",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Artem\", \"lastname\": \"Altynov\", \"totalprice\": 15000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "200",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "225ef3ea-ef1a-4d97-ad80-860182fb4371",
+      "timestamp": "2026-07-11T09:11:42.315806",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "188",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Artem\", \"lastname\": \"Altynov\", \"totalprice\": 15000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "200",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "0648cdb4-9085-48c1-9d51-3bf61601e8e2",
+      "timestamp": "2026-07-11T09:11:42.318631",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/booking/2",
+      "path": "/booking/2",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "174",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "dd339e19-4d6a-4cba-a582-d1581e07445a",
+      "timestamp": "2026-07-11T09:11:42.322827",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "83",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"bank\": \"T-bank\", \"account_number\": 1234567890, \"balance\": 300, \"is_active\": true}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "edf01ef7-e2c0-4af9-a63a-e1d23fb3927d",
+      "timestamp": "2026-07-11T09:11:42.326925",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "64",
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "client_host": "127.0.0.1",
+      "body": "bank=T-bank&account_number=1234567890&balance=300&is_active=True",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "3de4da83-4424-45a8-b8c2-7060b72f74fb",
+      "timestamp": "2026-07-11T09:11:42.335794",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "content-length": "83"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"bank\": \"T-bank\", \"account_number\": 1234567890, \"balance\": 300, \"is_active\": true}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "b859b409-228f-412e-8376-bd0ea877bca0",
+      "timestamp": "2026-07-11T09:11:42.340129",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "content-length": "188"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Artem\", \"lastname\": \"Altynov\", \"totalprice\": 15000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "200",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "33935046-1bb5-4c5a-bf99-e675dd427af1",
+      "timestamp": "2026-07-11T09:11:42.344489",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/inspector/history",
+      "path": "/inspector/history",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "authorization": "Bearer token123",
+        "x-custom-header": "MyValue"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "34144",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "318a6a30-2530-47e3-a15f-c3ddcf01b047",
+      "timestamp": "2026-07-11T09:11:42.350721",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/booking/999999",
+      "path": "/booking/999999",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "45",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "8f770058-4d57-455e-a605-c9c151310dab",
+      "timestamp": "2026-07-11T09:11:42.354137",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "188",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Artem\", \"lastname\": \"Altynov\", \"totalprice\": 15000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "200",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "9e1c6000-a7c3-4133-a476-2390413e9fb4",
+      "timestamp": "2026-07-11T09:11:42.357075",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/booking/4",
+      "path": "/booking/4",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "174",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "c97a5fcd-318b-494e-adac-47da76181742",
+      "timestamp": "2026-07-11T09:12:19.503417",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/inspector/history?limit=5",
+      "path": "/inspector/history",
+      "query_string": "limit=5",
+      "query_params": {
+        "limit": "5"
+      },
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "application/json",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://127.0.0.1:8000/docs",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "3223",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "bb5842e8-c081-45c7-bcba-c883af121bcb",
+      "timestamp": "2026-07-11T10:09:47.795322",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/docs",
+      "path": "/docs",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "cache-control": "max-age=0",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1019",
+        "content-type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "id": "a43c93dd-4689-4d7b-bfa1-551b76033452",
+      "timestamp": "2026-07-11T10:09:47.910141",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/openapi.json",
+      "path": "/openapi.json",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "application/json,*/*",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://127.0.0.1:8000/docs",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "10959",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "d636da0a-a874-4bb7-a1b6-0b8147fc5be4",
+      "timestamp": "2026-07-11T10:15:04.674271",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/",
+      "path": "/",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1353",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "8c6590b4-621c-48c1-867f-47e1d7b889c8",
+      "timestamp": "2026-07-11T10:15:04.681714",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/inspector/history?limit=35",
+      "path": "/inspector/history",
+      "query_string": "limit=35",
+      "query_params": {
+        "limit": "35"
+      },
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "25834",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "13a916b4-0b45-47b0-ab86-282a82cbba18",
+      "timestamp": "2026-07-11T10:15:04.686107",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities?filter=active&filter=featured&filter=sale",
+      "path": "/entities",
+      "query_string": "filter=active&filter=featured&filter=sale",
+      "query_params": {
+        "filter": "sale"
+      },
+      "query_params_multi": {
+        "filter": [
+          "active",
+          "featured",
+          "sale"
+        ]
+      },
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1367",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "5f77f35d-4e78-44ee-9a4e-bc2ef677cce9",
+      "timestamp": "2026-07-11T10:15:04.689135",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "188",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Artem\", \"lastname\": \"Altynov\", \"totalprice\": 15000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "200",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "322a3be9-e4cf-4649-858b-c162ae1c50b8",
+      "timestamp": "2026-07-11T10:15:04.693893",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "188",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Artem\", \"lastname\": \"Altynov\", \"totalprice\": 15000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "200",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "ce69ebdc-85ac-4434-a005-79dfaf026b3e",
+      "timestamp": "2026-07-11T10:15:04.696485",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/booking/6",
+      "path": "/booking/6",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "174",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "144de706-82cc-4357-a1e5-ac67cda8ec40",
+      "timestamp": "2026-07-11T10:15:04.699693",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "83",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"bank\": \"T-bank\", \"account_number\": 1234567890, \"balance\": 300, \"is_active\": true}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "21fa4d7c-18d5-43c6-b2af-07c1a1f854a0",
+      "timestamp": "2026-07-11T10:15:04.702274",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "64",
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "client_host": "127.0.0.1",
+      "body": "bank=T-bank&account_number=1234567890&balance=300&is_active=True",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "a16bbaf0-6a59-4458-8d62-bb4f0876149b",
+      "timestamp": "2026-07-11T10:15:04.707082",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "content-length": "83"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"bank\": \"T-bank\", \"account_number\": 1234567890, \"balance\": 300, \"is_active\": true}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "c82aa16c-18b3-4197-88b4-18759ca9dbfd",
+      "timestamp": "2026-07-11T10:15:04.711318",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "content-length": "188"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Artem\", \"lastname\": \"Altynov\", \"totalprice\": 15000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "200",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "9d854543-7279-406c-9b08-846f8b83382a",
+      "timestamp": "2026-07-11T10:15:04.715569",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/inspector/history",
+      "path": "/inspector/history",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "authorization": "Bearer token123",
+        "x-custom-header": "MyValue"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "35484",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "e8cac859-bc90-4192-b081-2ee1103fccdc",
+      "timestamp": "2026-07-11T10:15:04.724166",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/booking/999999",
+      "path": "/booking/999999",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "45",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "a52d82ba-ca57-440d-af3f-1dc0bfee3e62",
+      "timestamp": "2026-07-11T10:15:04.728261",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "188",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Artem\", \"lastname\": \"Altynov\", \"totalprice\": 15000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "200",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "ef9ead9b-d776-4797-8f41-b325202ea858",
+      "timestamp": "2026-07-11T10:15:04.730882",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/booking/8",
+      "path": "/booking/8",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "174",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "60d8afbc-f82a-45c6-a64d-335824516e0e",
+      "timestamp": "2026-07-11T10:24:11.808927",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/docs",
+      "path": "/docs",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "cache-control": "max-age=0",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1019",
+        "content-type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "id": "7ab2b90b-000a-47a9-9d19-f424841299b7",
+      "timestamp": "2026-07-11T10:24:11.925738",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/openapi.json",
+      "path": "/openapi.json",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "application/json,*/*",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://127.0.0.1:8000/docs",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "10959",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "dbfbee10-c80f-4aef-ab13-f8d7a2feb05b",
+      "timestamp": "2026-07-11T10:28:04.371559",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "331",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\\u0412\\u0430\\u0441\\u044f\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "239",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "87e7beb3-1779-42a1-a4da-96a019886a84",
+      "timestamp": "2026-07-11T10:28:04.404122",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "307",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 422,
+      "response_headers": {
+        "content-length": "149",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "3d1b123d-c6b6-43fa-ab15-ad0f3c040487",
+      "timestamp": "2026-07-11T10:29:37.377828",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "331",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\\u0412\\u0430\\u0441\\u044f\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "240",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "8e2e91c6-7046-4cfb-9e92-347b375b42b8",
+      "timestamp": "2026-07-11T10:29:37.408020",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "307",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 422,
+      "response_headers": {
+        "content-length": "149",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "a9f15b22-7323-41e8-8866-f05c1faebace",
+      "timestamp": "2026-07-11T10:32:09.120606",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "331",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\\u0412\\u0430\\u0441\\u044f\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "240",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "f6db3006-4701-45ff-9784-92a5e2a6a7e7",
+      "timestamp": "2026-07-11T10:32:09.157423",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "307",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 422,
+      "response_headers": {
+        "content-length": "149",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "a083f7b9-c642-46c2-98fe-9e4cd753fe5d",
+      "timestamp": "2026-07-11T10:32:16.620854",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/docs",
+      "path": "/docs",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "cache-control": "max-age=0",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1019",
+        "content-type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "id": "8bdd0279-e6c0-4fcc-b452-66385ba0c8b3",
+      "timestamp": "2026-07-11T10:32:16.724357",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/openapi.json",
+      "path": "/openapi.json",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "application/json,*/*",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://127.0.0.1:8000/docs",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "10959",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "e8fcd89b-8901-4ea2-98fe-b1bb54d75835",
+      "timestamp": "2026-07-11T10:36:26.247185",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "331",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\\u0412\\u0430\\u0441\\u044f\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "240",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "6bcc2c7f-9cbe-44d4-afba-c06d91b64bd9",
+      "timestamp": "2026-07-11T10:36:26.279256",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "307",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 422,
+      "response_headers": {
+        "content-length": "149",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "db6d4447-789e-4e47-b264-1a44022138e5",
+      "timestamp": "2026-07-11T10:41:41.447616",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "331",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\\u0412\\u0430\\u0441\\u044f\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "240",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "df3006d6-fcb8-4c82-96ea-620b169db0d4",
+      "timestamp": "2026-07-11T10:41:41.477241",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "307",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 422,
+      "response_headers": {
+        "content-length": "149",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "9e8084c2-ea2f-4255-b798-483386d44226",
+      "timestamp": "2026-07-11T10:45:11.867802",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "331",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\\u0412\\u0430\\u0441\\u044f\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "240",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "0ee2b315-5e0b-41b2-baf4-fe745466e9da",
+      "timestamp": "2026-07-11T10:45:11.898906",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "308",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \" \", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "233",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "33ff8e06-db13-40d1-b744-ad1c7e966571",
+      "timestamp": "2026-07-11T10:49:02.655086",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "331",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\\u0412\\u0430\\u0441\\u044f\", \"lastname\": \"\\u041f\\u0443\\u043f\\u043a\\u0438\\u043d\", \"totalprice\": 1000000000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0411\\u043b\\u0435\\u043a \\u0434\\u0436\\u0435\\u043a \\u0438 \\u0434\\u0435\\u0432\\u043e\\u0447\\u043a\\u0438\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "240",
+        "content-type": "application/json"
+      }
     }
   ],
-  "total_requests": 100,
-  "last_updated": "2026-07-10T23:24:45.381114"
+  "total_requests": 150,
+  "last_updated": "2026-07-11T10:49:02.656119"
 }
