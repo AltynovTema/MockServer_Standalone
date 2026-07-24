@@ -4078,8 +4078,1788 @@
         "content-length": "240",
         "content-type": "application/json"
       }
+    },
+    {
+      "id": "184e9ad9-a498-4a64-b3b4-23d20f796b79",
+      "timestamp": "2026-07-15T10:10:33.459054",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/",
+      "path": "/",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1353",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "ee7805fd-6df5-4a07-9ad6-e980b9e12ea1",
+      "timestamp": "2026-07-15T10:10:33.491190",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/favicon.ico",
+      "path": "/favicon.ico",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "no-cors",
+        "sec-fetch-dest": "image",
+        "referer": "http://127.0.0.1:8000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "22",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "e26dab31-1081-4460-a6a4-a8e504fda2bf",
+      "timestamp": "2026-07-15T10:10:33.492406",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/favicon.ico",
+      "path": "/favicon.ico",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "no-cors",
+        "sec-fetch-dest": "image",
+        "referer": "http://127.0.0.1:8000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "22",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "2e2f07cb-f6b3-417e-a27d-5dd1689a5a16",
+      "timestamp": "2026-07-15T10:10:35.915416",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/",
+      "path": "/",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "cache-control": "max-age=0",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1353",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "9ce340ab-67d5-483d-a724-1fed60331910",
+      "timestamp": "2026-07-15T10:10:39.026647",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/docs",
+      "path": "/docs",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1019",
+        "content-type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "id": "faff475d-1c04-4a9b-a44b-b37a80201a22",
+      "timestamp": "2026-07-15T10:10:39.187505",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/openapi.json",
+      "path": "/openapi.json",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36",
+        "accept": "application/json,*/*",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"YaBrowser\";v=\"26.4\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://127.0.0.1:8000/docs",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "10959",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "a1475107-5d84-451a-8eb7-2eb6954c6d0b",
+      "timestamp": "2026-07-15T10:11:23.644977",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/",
+      "path": "/",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "36",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"key1\": \"value1\", \"key2\": \"value2\"}",
+      "response_status": 405,
+      "response_headers": {
+        "allow": "GET",
+        "content-length": "31",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "196d8439-5bb1-4b18-bed2-5087603a40ef",
+      "timestamp": "2026-07-15T10:13:41.132016",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/",
+      "path": "/",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "36",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"key1\": \"value1\", \"key2\": \"value2\"}",
+      "response_status": 405,
+      "response_headers": {
+        "allow": "GET",
+        "content-length": "31",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "458ecae3-c59b-4858-a9df-956fd1c79400",
+      "timestamp": "2026-07-15T10:13:53.673712",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/",
+      "path": "/",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "36",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"key1\": \"value1\", \"key2\": \"value2\"}",
+      "response_status": 405,
+      "response_headers": {
+        "allow": "GET",
+        "content-length": "31",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "9d33ce0c-1cd2-48c2-9a4b-15b0a65ecb5f",
+      "timestamp": "2026-07-15T10:18:16.174655",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/",
+      "path": "/",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "36",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"key1\": \"value1\", \"key2\": \"value2\"}",
+      "response_status": 405,
+      "response_headers": {
+        "allow": "GET",
+        "content-length": "31",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "932479fc-7727-462a-be47-3cfc282fc813",
+      "timestamp": "2026-07-15T11:54:10.216756",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "36",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"key1\": \"value1\", \"key2\": \"value2\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "2ea7c691-d1c4-4c5f-bc85-973a2e04c8fe",
+      "timestamp": "2026-07-15T11:58:20.528506",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "36",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"key1\": \"value1\", \"key2\": \"value2\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "ef35e443-c04c-46b9-9fc7-60a402a57600",
+      "timestamp": "2026-07-15T11:58:53.187016",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "36",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"key1\": \"value1\", \"key2\": \"value2\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "e7b42395-8f5a-4b1c-9efa-e84d0a96e9c9",
+      "timestamp": "2026-07-15T11:59:16.976294",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "36",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"key1\": \"value1\", \"key2\": \"value2\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "b6897375-2bbd-4ae2-af0c-4f823d142273",
+      "timestamp": "2026-07-15T11:59:37.582589",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "36",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"key1\": \"value1\", \"key2\": \"value2\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "d69a3a08-1ed4-4a8d-982c-95dcee70f24f",
+      "timestamp": "2026-07-15T11:59:47.080862",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "36",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"key1\": \"value1\", \"key2\": \"value2\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "af49d278-0baa-45cd-9bf0-bf63c5d9ccdd",
+      "timestamp": "2026-07-15T12:34:22.873242",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "7c63d3d1-e6ef-4f40-b4a3-045fd24b6332",
+      "timestamp": "2026-07-15T12:37:07.029568",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "e48ca4ae-fba1-42cd-a92f-4fb50e77454c",
+      "timestamp": "2026-07-15T17:34:02.573469",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "4cef88af-d13c-41e3-89b2-99024ea3ce4e",
+      "timestamp": "2026-07-15T17:35:18.318862",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "90a084b8-3163-48d0-bcab-4bbb59ae558a",
+      "timestamp": "2026-07-15T20:34:28.966106",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "197cb0a0-dc2d-4808-89b6-f067732c04de",
+      "timestamp": "2026-07-15T20:34:46.614882",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "70429347-436d-4110-a116-52335e7d880d",
+      "timestamp": "2026-07-15T20:34:53.085032",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "00a3a4e2-841b-43d4-a216-62ad3b55395f",
+      "timestamp": "2026-07-15T20:35:08.267343",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "6ec0eebe-8faf-4ade-9452-f63d7f1b56a2",
+      "timestamp": "2026-07-15T20:43:33.704388",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "bfead8d9-dee5-4b09-b5df-0b1278c65463",
+      "timestamp": "2026-07-15T20:44:44.734470",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "cbf5e141-e2f2-4c84-a857-13bf28aeb7be",
+      "timestamp": "2026-07-15T20:46:22.507652",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "693b691e-fed0-47ad-87f7-c637819a46d8",
+      "timestamp": "2026-07-15T20:46:32.762588",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "b704fdb8-f8d7-4eb7-8dbd-44d2dc303801",
+      "timestamp": "2026-07-15T20:48:07.407057",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "129",
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "client_host": "127.0.0.1",
+      "body": "firstname=Jim&lastname=Brown&totalprice=111&depositpaid=True&bookingdates=checkin&bookingdates=checkout&additionalneeds=Breakfast",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "96dd1809-b689-42b6-9cbc-015fbc6ee53e",
+      "timestamp": "2026-07-15T20:56:04.780171",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "182",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"Jim\", \"lastname\": \"Brown\", \"totalprice\": 111, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2025-01-04\", \"checkout\": \"2025-01-15\"}, \"additionalneeds\": \"Breakfast\"}",
+      "response_status": 201,
+      "response_headers": {
+        "content-length": "224",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "0291b3c2-61c4-40d7-ae41-e6e37e74051e",
+      "timestamp": "2026-07-19T11:07:49.319655",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/",
+      "path": "/",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"YaBrowser\";v=\"26.6\", \"Not/A)Brand\";v=\"99\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 YaBrowser/26.6.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1353",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "e7857db6-3240-42eb-a935-9b381e09bca9",
+      "timestamp": "2026-07-19T11:07:49.351872",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/favicon.ico",
+      "path": "/favicon.ico",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 YaBrowser/26.6.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"YaBrowser\";v=\"26.6\", \"Not/A)Brand\";v=\"99\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "no-cors",
+        "sec-fetch-dest": "image",
+        "referer": "http://127.0.0.1:8000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "22",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "dd4522e5-6b8c-41f7-b1ed-0c02a27a776c",
+      "timestamp": "2026-07-19T11:07:49.353129",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/favicon.ico",
+      "path": "/favicon.ico",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 YaBrowser/26.6.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"YaBrowser\";v=\"26.6\", \"Not/A)Brand\";v=\"99\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "no-cors",
+        "sec-fetch-dest": "image",
+        "referer": "http://127.0.0.1:8000/",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "22",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "6c970692-54fa-4915-a1b6-2d0cb5abe0b0",
+      "timestamp": "2026-07-19T11:08:19.447940",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/docs",
+      "path": "/docs",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"YaBrowser\";v=\"26.6\", \"Not/A)Brand\";v=\"99\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 YaBrowser/26.6.0.0 Safari/537.36",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-user": "?1",
+        "sec-fetch-dest": "document",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "1019",
+        "content-type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "id": "1b8e47c8-5923-4784-9d33-4171b6e2d34a",
+      "timestamp": "2026-07-19T11:08:20.149506",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/openapi.json",
+      "path": "/openapi.json",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "connection": "keep-alive",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 YaBrowser/26.6.0.0 Safari/537.36",
+        "accept": "application/json,*/*",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"YaBrowser\";v=\"26.6\", \"Not/A)Brand\";v=\"99\", \"Yowser\";v=\"2.5\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "http://127.0.0.1:8000/docs",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "ru,en;q=0.9"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "10959",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "f2eb0786-56fd-4c82-ad48-b10935dafa4a",
+      "timestamp": "2026-07-19T11:21:06.028415",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "ad8dce34-30c1-4493-80cc-8a1192d40ac4",
+      "timestamp": "2026-07-19T11:23:10.856581",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "3ca63979-3dc7-4fbb-b480-2e91587e9131",
+      "timestamp": "2026-07-19T11:25:15.969316",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "38e4eab4-a820-4ff1-bf1d-51d8b4f2ed3e",
+      "timestamp": "2026-07-19T11:33:51.846839",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "b0d0c186-098e-4ab3-abcc-8ccea59830e3",
+      "timestamp": "2026-07-19T11:35:55.526330",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "0b2c6e02-7909-47d5-81af-11046e0c442c",
+      "timestamp": "2026-07-19T11:36:26.730419",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "499f41a2-e8ba-489d-af54-6884103d0d31",
+      "timestamp": "2026-07-19T11:37:02.628627",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "2ad7a894-0989-422c-a54d-be10a6110b1f",
+      "timestamp": "2026-07-19T11:40:32.366112",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "6af67840-89cb-4d43-adfa-67b01ec6913d",
+      "timestamp": "2026-07-19T11:45:10.877241",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "534ad7aa-a89d-4374-9727-4d1a68f8d001",
+      "timestamp": "2026-07-19T11:45:35.380432",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "7d60dccc-0598-4c11-b32f-6466ec9e03e8",
+      "timestamp": "2026-07-19T11:46:19.350974",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "067f109c-3494-4f8b-b741-def1076d30bb",
+      "timestamp": "2026-07-19T11:46:38.308322",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "01518e35-43bf-4210-bdf5-3058eaad8f04",
+      "timestamp": "2026-07-19T11:46:57.370033",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "9e67b273-2382-4c72-bbf6-2da3cd820035",
+      "timestamp": "2026-07-19T11:48:26.221788",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "666291ba-336c-4979-890c-f17837b73f03",
+      "timestamp": "2026-07-19T11:49:05.772695",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "7e42561f-28a1-4db7-a5a7-1ff4076d63a4",
+      "timestamp": "2026-07-22T13:23:09.255654",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "1bc34426-288d-462e-a315-1fc966cb9de0",
+      "timestamp": "2026-07-22T13:23:09.261298",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "2a507adc-012e-4f03-8cf2-558ee8dca815",
+      "timestamp": "2026-07-22T13:23:09.263635",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities/encoding/utf8",
+      "path": "/entities/encoding/utf8",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "22",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "328b748b-ed25-4b91-80e5-4496c3471fd3",
+      "timestamp": "2026-07-22T13:23:43.458483",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "15ed6342-28b7-4354-9b3e-3c7caf3340d7",
+      "timestamp": "2026-07-22T13:23:43.461351",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "54c537b5-ba0c-4102-8b03-87c59400c1a3",
+      "timestamp": "2026-07-22T13:23:43.463441",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities/encoding/utf8",
+      "path": "/entities/encoding/utf8",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "22",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "b8a94914-a7b8-4c24-9fe9-226435226125",
+      "timestamp": "2026-07-22T13:25:00.783863",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "aa054428-71f9-45a2-bcba-8bd0f8ac0642",
+      "timestamp": "2026-07-22T13:25:00.786431",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "7767f4b3-12c5-421d-a1c1-1227fc01d3bb",
+      "timestamp": "2026-07-22T13:25:00.788542",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities/encoding/utf8",
+      "path": "/entities/encoding/utf8",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "22",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "14c516cc-2ce5-42d7-a223-dd064bc97583",
+      "timestamp": "2026-07-22T13:32:18.475632",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "00973ff0-7fc1-4cd2-a770-51863832ec32",
+      "timestamp": "2026-07-22T13:32:18.483686",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "f8252f28-b499-4a52-b4aa-785606ec61cb",
+      "timestamp": "2026-07-22T13:32:18.485793",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities/encoding/utf8",
+      "path": "/entities/encoding/utf8",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "22",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "e916cd57-5c81-415e-9536-7f8b243da431",
+      "timestamp": "2026-07-22T13:33:08.280937",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "241473bd-03ee-4c39-b183-b8108d26892e",
+      "timestamp": "2026-07-22T13:33:08.283629",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "8df93e4f-efce-4996-a8ac-4e2c73f2e9ce",
+      "timestamp": "2026-07-22T13:33:08.285681",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities/encoding/utf8",
+      "path": "/entities/encoding/utf8",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "22",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "bf1da3de-b6e1-4601-83ec-84f00d67bf01",
+      "timestamp": "2026-07-22T13:34:00.151358",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "5b691946-6a44-4c76-9977-031a13930a56",
+      "timestamp": "2026-07-22T13:34:00.154076",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "633563bd-880c-48bf-9ab4-696da9c9d101",
+      "timestamp": "2026-07-22T13:51:00.223923",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "fed04691-d899-44d2-951c-840ade47dcf5",
+      "timestamp": "2026-07-22T13:51:00.226714",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "cbe41ba3-d98f-48c7-9fee-1a75f345d12b",
+      "timestamp": "2026-07-22T13:52:45.026546",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities",
+      "path": "/entities",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate, zstd",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "6307",
+        "content-type": "application/json"
+      }
     }
   ],
-  "total_requests": 150,
-  "last_updated": "2026-07-11T10:49:02.656119"
+  "total_requests": 220,
+  "last_updated": "2026-07-22T13:52:45.027217"
 }

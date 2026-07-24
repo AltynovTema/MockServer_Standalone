@@ -10,6 +10,7 @@
 """
 
 import uuid
+import asyncio
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 from fastapi import FastAPI, Request, HTTPException, Query, Form
@@ -96,6 +97,16 @@ async def log_requests(request: Request, call_next):
         "headers": dict(request.headers),
         "client_host": request.client.host if request.client else None,
     }
+
+    # Проверяем наличие флага замедления в запросе
+    if "slow" in request.query_params:
+        try:
+            delay = float(request.query_params["slow"])
+            if delay < 0:
+                delay = 0
+        except ValueError:
+            delay = 1  # Значение по умолчанию - 1 секунда
+        await asyncio.sleep(delay)
 
     # Получаем все значения для повторяющихся ключей
     for key in set(request.query_params.keys()):
