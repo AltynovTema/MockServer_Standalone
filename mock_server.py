@@ -157,6 +157,14 @@ async def create_entity(request: Request):
         
         if "application/json" in content_type:
             raw_data = await request.json()
+            
+            # Проверяем наличие флага замедления в теле запроса
+            if raw_data.get("SlowPerformance", False):
+                delay = raw_data.get("DelaySeconds", 1)  # Значение по умолчанию - 1 секунда
+                if isinstance(delay, (int, float)) and delay > 0:
+                    await asyncio.sleep(delay)
+                else:
+                    await asyncio.sleep(1)  # Стандартная задержка при некорректном значении
         elif "application/x-www-form-urlencoded" in content_type:
             form_data = await request.form()
             raw_data = dict(form_data)
