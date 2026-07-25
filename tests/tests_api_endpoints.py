@@ -203,20 +203,4 @@ def test_slow_performance_query_param(url_fast_api):
     assert response.status_code == 201
 
 
-def test_slow_performance_body(url_fast_api):
-    """Тест проверяет задержку через тело запроса:
-    
-    1. Отправляет POST-запрос с флагом SlowPerformance
-    2. Проверяет, что сервер обрабатывает задержку
-    3. Проверяет, что статус код равен 201
-    """
-    path = '/entities'
-    data = {
-        'name': 'PerformanceTest',
-        'SlowPerformance': True,
-        'DelaySeconds': 2
-    }
-    response = requests.post(url_fast_api + path, json=data)
-    assert response.status_code == 201
-
 

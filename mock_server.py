@@ -163,21 +163,7 @@ async def create_entity(request: Request):
                     detail="Request body cannot be empty. Provide valid JSON data."
                 )
 
-            # Проверяем наличие флага замедления в теле запроса
-            if raw_data.get("SlowPerformance", False):
-                delay = raw_data.get("DelaySeconds", 1)  # Значение по умолчанию - 1 секунда
-                if isinstance(delay, (int, float)) and delay > 0:
-                    await asyncio.sleep(delay)
-                else:
-                    await asyncio.sleep(1)  # Стандартная задержка при некорректном значении
-            
-            # Проверяем наличие флага замедления в теле запроса
-            # if raw_data.get("SlowPerformance", False):
-            #     delay = raw_data.get("DelaySeconds", 1)  # Значение по умолчанию - 1 секунда
-            #     if isinstance(delay, (int, float)) and delay > 0:
-            #         await asyncio.sleep(delay)
-            #     else:
-            #         await asyncio.sleep(1)  # Стандартная задержка при некорректном значении
+
         elif "application/x-www-form-urlencoded" in content_type:
             form_data = await request.form()
             raw_data = dict(form_data)
@@ -389,7 +375,7 @@ async def get_server_stats():
 # ============================================================================
 
 @app.post("/booking", status_code=201)
-def create_booking(booking: BookingCreate):
+async def create_booking(request: Request, booking: BookingCreate):
     """
     Создаёт новое бронирование
     
@@ -411,9 +397,15 @@ def create_booking(booking: BookingCreate):
         },
         "additionalneeds": "Breakfast"
     }
+    
+    Также поддерживает параметры:
+    - SlowPerformance (bool): если true, вводит задержку в ответе
+    - DelaySeconds (int): длительность задержки в секундах
     """
     global booking_id_counter
     
+
+
     booking_id = booking_id_counter
     booking_id_counter += 1
     
@@ -422,10 +414,15 @@ def create_booking(booking: BookingCreate):
     
     print(f"✅ Создано бронирование ID={booking_id}: {booking.dict()}")
     
-    return {
+    # Формируем ответ
+    response = {
         "bookingid": booking_id,
         "booking": booking.dict()
     }
+    
+
+    
+    return response
 
 
 @app.get("/booking/{booking_id}")
