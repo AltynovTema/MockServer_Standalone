@@ -1,5 +1,756 @@
 {
-  "history": [],
-  "total_requests": 0,
-  "last_updated": "2026-07-29T00:06:16.934883"
+  "history": [
+    {
+      "id": "e907428e-ee3c-4409-8d3c-c05ef10027c3",
+      "timestamp": "2026-08-31T18:31:13.609481",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/inspector/history/clear",
+      "path": "/inspector/history/clear",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "37",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "bc6bf45d-8b2e-4c15-8708-8b5652092711",
+      "timestamp": "2026-08-31T18:31:13.611723",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/inspector/stats",
+      "path": "/inspector/stats",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "292",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "fdfa792c-b446-4023-8a24-6009414c0909",
+      "timestamp": "2026-08-31T18:31:13.613928",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/health",
+      "path": "/health",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "61",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "25aed077-3261-4cc3-8f4a-53ca02c5c023",
+      "timestamp": "2026-08-31T18:31:13.615878",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/booking/999999",
+      "path": "/booking/999999",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "45",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "9b824790-bcff-41d2-bbe9-c1aaff3de99d",
+      "timestamp": "2026-08-31T18:31:13.617966",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/booking",
+      "path": "/booking",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "303",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"firstname\": \"\", \"lastname\": \"\\u0410\\u043b\\u0442\\u044b\\u043d\\u043e\\u0432\", \"totalprice\": 10000, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2026-08-06\", \"checkout\": \"2026-08-10\"}, \"additionalneeds\": \"\\u0417\\u0430\\u0432\\u0442\\u0440\\u0430\\u043a, \\u041e\\u0431\\u0435\\u0434, \\u0423\\u0436\\u0438\\u043d\"}",
+      "response_status": 422,
+      "response_headers": {
+        "content-length": "149",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "6cce4af0-1a67-405e-ac9f-ab101c39e797",
+      "timestamp": "2026-08-31T18:31:13.620729",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/entities/00000000-0000-0000-0000-000000000000",
+      "path": "/entities/00000000-0000-0000-0000-000000000000",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "76",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "d4beec71-802c-403d-ae8a-7c9e7094d04a",
+      "timestamp": "2026-08-31T18:31:13.622663",
+      "method": "PUT",
+      "url": "http://127.0.0.1:8000/entities/00000000-0000-0000-0000-000000000000",
+      "path": "/entities/00000000-0000-0000-0000-000000000000",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "23",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"name\": \"UpdatedName\"}",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "76",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "a5f2094f-4c58-490f-84c9-1917400e528e",
+      "timestamp": "2026-08-31T18:31:13.625029",
+      "method": "DELETE",
+      "url": "http://127.0.0.1:8000/entities/00000000-0000-0000-0000-000000000000",
+      "path": "/entities/00000000-0000-0000-0000-000000000000",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "0"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "76",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "be6ff16e-0764-4433-8d08-ce16eb224d40",
+      "timestamp": "2026-08-31T18:31:13.626766",
+      "method": "DELETE",
+      "url": "http://127.0.0.1:8000/booking/999999",
+      "path": "/booking/999999",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "0"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 404,
+      "response_headers": {
+        "content-length": "45",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "b388a923-78fa-415f-b040-df26c2a5f9d0",
+      "timestamp": "2026-08-31T18:31:13.628650",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/login",
+      "path": "/auth/login",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "45",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"username\": \"admin\", \"password\": \"admin123\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "529",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "e87b229d-ac77-4232-8374-c2b46f757c51",
+      "timestamp": "2026-08-31T18:31:13.631729",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/login",
+      "path": "/auth/login",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "45",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"username\": \"admin\", \"password\": \"admin123\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "529",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "c03cb19d-1705-4a10-be63-0ee8798d2419",
+      "timestamp": "2026-08-31T18:31:13.633314",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/login",
+      "path": "/auth/login",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"username\": \"user\", \"password\": \"user123\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "524",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "f8422262-a996-4145-a74f-d3aa0df8aa6b",
+      "timestamp": "2026-08-31T18:31:13.635399",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/login",
+      "path": "/auth/login",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "45",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"username\": \"admin\", \"password\": \"admin123\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "529",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "943f2ed9-411c-4be8-a539-8e2988ed7a2c",
+      "timestamp": "2026-08-31T18:31:13.636997",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/protected/data",
+      "path": "/protected/data",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4ODIwMTM3MywidHlwZSI6ImFjY2VzcyIsImp0aSI6Ijg4NmY3MmFmLWE5ZGItNDlkOS05YWVmLWU2MjgxMDM5ZWE4ZiJ9.YYiIut_SOy5LGhd6JjS-N-Wn3tuniWcdBW71o_8PfIw"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "234",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "a7080eec-0058-468d-83e6-ce256c0aeb30",
+      "timestamp": "2026-08-31T18:31:13.639238",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/login",
+      "path": "/auth/login",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "43",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"username\": \"user\", \"password\": \"user123\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "524",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "55f4516c-6da0-4358-bb63-9ad6eea3fd17",
+      "timestamp": "2026-08-31T18:31:13.640823",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/refresh",
+      "path": "/auth/refresh",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "245",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6InVzZXIiLCJleHAiOjE3ODgyMDQ2NzMsInR5cGUiOiJyZWZyZXNoIiwianRpIjoiZjkxOWJjOGMtODAyNC00MzkwLWE4MDEtNzI5YWZlODg4ZmM0In0.-jqTwdU23zy1EgREgTbA3qV4Xw5DTdphZLdtxpyaQ4w\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "524",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "23453384-ddfd-470c-bdfe-e4382d9bdde7",
+      "timestamp": "2026-08-31T18:31:13.642984",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/login",
+      "path": "/auth/login",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "45",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"username\": \"admin\", \"password\": \"admin123\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "529",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "4fc61add-86c8-4dcb-b0df-70807689c9a8",
+      "timestamp": "2026-08-31T18:31:13.644820",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/auth/validate?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4ODIwMTM3MywidHlwZSI6ImFjY2VzcyIsImp0aSI6IjliNzc0ZjJkLTNjN2ItNGQ3NS1iZjFlLWIwZjM4ZGQ2OGNkNiJ9.Tu03ItuxKZhWjyP8nlTqSgJzI7FFT6d6UYoVc4sg2U0",
+      "path": "/auth/validate",
+      "query_string": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4ODIwMTM3MywidHlwZSI6ImFjY2VzcyIsImp0aSI6IjliNzc0ZjJkLTNjN2ItNGQ3NS1iZjFlLWIwZjM4ZGQ2OGNkNiJ9.Tu03ItuxKZhWjyP8nlTqSgJzI7FFT6d6UYoVc4sg2U0",
+      "query_params": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4ODIwMTM3MywidHlwZSI6ImFjY2VzcyIsImp0aSI6IjliNzc0ZjJkLTNjN2ItNGQ3NS1iZjFlLWIwZjM4ZGQ2OGNkNiJ9.Tu03ItuxKZhWjyP8nlTqSgJzI7FFT6d6UYoVc4sg2U0"
+      },
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "166",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "54820518-2668-4c21-b98c-d22a2da8cae9",
+      "timestamp": "2026-08-31T18:31:13.646767",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/login",
+      "path": "/auth/login",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "45",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"username\": \"admin\", \"password\": \"admin123\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "529",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "6de41830-938f-446d-afc3-db6224e1579b",
+      "timestamp": "2026-08-31T18:31:13.648303",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/logout",
+      "path": "/auth/logout",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "238",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4ODIwMTM3MywidHlwZSI6ImFjY2VzcyIsImp0aSI6ImEwNGIxNjJiLThhOTktNGMzYS1iNzhkLTNiMDYxZTllZjMxMSJ9.MWMYfLXkSxOaM5Q4iYSMnr1F6K3YN8wdGSgTLufEIjo\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "69",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "04909fa4-9315-4490-b0ab-74fd498adb2b",
+      "timestamp": "2026-08-31T18:31:13.650408",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/protected/data",
+      "path": "/protected/data",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4ODIwMTM3MywidHlwZSI6ImFjY2VzcyIsImp0aSI6ImEwNGIxNjJiLThhOTktNGMzYS1iNzhkLTNiMDYxZTllZjMxMSJ9.MWMYfLXkSxOaM5Q4iYSMnr1F6K3YN8wdGSgTLufEIjo"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 401,
+      "response_headers": {
+        "www-authenticate": "Bearer",
+        "content-length": "63",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "367be904-837d-4c78-aa1f-6a6368fee0db",
+      "timestamp": "2026-08-31T18:31:13.652350",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/login",
+      "path": "/auth/login",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "45",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"username\": \"admin\", \"password\": \"admin123\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "529",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "47544e1c-b08b-423c-8d66-1009376c136e",
+      "timestamp": "2026-08-31T18:31:13.654107",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/protected/data",
+      "path": "/protected/data",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4ODIwMTM3MywidHlwZSI6ImFjY2VzcyIsImp0aSI6IjU0NGZiMmU3LWQzODItNGQ2Ny1hZWRiLTMyMmVhZWZkNWU1ZCJ9.uVy-hn8XG6ma3xfZ5LjKTlmllfM53o-IPU1gEu_wiu4"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "234",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "ff4712f6-49cd-4cde-b0ba-8c33cd73ad40",
+      "timestamp": "2026-08-31T18:31:13.655446",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/refresh",
+      "path": "/auth/refresh",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "248",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4ODIwNDY3MywidHlwZSI6InJlZnJlc2giLCJqdGkiOiI1ZDVhYzAyMS1jZjVhLTQwNjktOGZmMS00ZGQ1YTU3ZDA5YzIifQ.gN-Ws-YmNSJ-aa5KGekQjUv-TA-EAZrM7qaAwlraXwA\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "529",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "15ade430-1123-4c69-a2a9-fa995072d5da",
+      "timestamp": "2026-08-31T18:31:13.656902",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/protected/data",
+      "path": "/protected/data",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4ODIwMTM3MywidHlwZSI6ImFjY2VzcyIsImp0aSI6ImFhMjFjMTI3LWEwMTUtNDA4Mi04OWZlLWZjMjczODczODNiOSJ9.VelucEOTddRbTs8de7ldzazohg7ygTEuBj_UAPYVXws"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "234",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "388af9f4-5c82-4dea-aa8e-835f5d2ceb95",
+      "timestamp": "2026-08-31T18:31:13.658363",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/logout",
+      "path": "/auth/logout",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "238",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4ODIwMTM3MywidHlwZSI6ImFjY2VzcyIsImp0aSI6ImFhMjFjMTI3LWEwMTUtNDA4Mi04OWZlLWZjMjczODczODNiOSJ9.VelucEOTddRbTs8de7ldzazohg7ygTEuBj_UAPYVXws\"}",
+      "response_status": 200,
+      "response_headers": {
+        "content-length": "69",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "faa3bfc6-a9dd-4c3f-a9a3-6716fe560a33",
+      "timestamp": "2026-08-31T18:31:13.660432",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/login",
+      "path": "/auth/login",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "51",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"username\": \"admin\", \"password\": \"wrong_password\"}",
+      "response_status": 401,
+      "response_headers": {
+        "content-length": "81",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "dea4f966-5546-4dc0-a7ce-4a6936252ba6",
+      "timestamp": "2026-08-31T18:31:13.662632",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/protected/data",
+      "path": "/protected/data",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 401,
+      "response_headers": {
+        "www-authenticate": "Bearer",
+        "content-length": "68",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "468445a0-f172-4c45-b41e-8710405068f0",
+      "timestamp": "2026-08-31T18:31:13.664539",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/protected/data",
+      "path": "/protected/data",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "authorization": "Bearer invalid_token_here"
+      },
+      "client_host": "127.0.0.1",
+      "response_status": 401,
+      "response_headers": {
+        "www-authenticate": "Bearer",
+        "content-length": "77",
+        "content-type": "application/json"
+      }
+    },
+    {
+      "id": "e4dee42f-7df3-4eff-9ad1-a532976ecd3f",
+      "timestamp": "2026-08-31T18:31:13.666479",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/auth/refresh",
+      "path": "/auth/refresh",
+      "query_string": "",
+      "query_params": {},
+      "query_params_multi": {},
+      "headers": {
+        "host": "127.0.0.1:8000",
+        "user-agent": "python-requests/2.32.5",
+        "accept-encoding": "gzip, deflate",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-length": "42",
+        "content-type": "application/json"
+      },
+      "client_host": "127.0.0.1",
+      "body": "{\"refresh_token\": \"invalid.refresh.token\"}",
+      "response_status": 401,
+      "response_headers": {
+        "content-length": "78",
+        "content-type": "application/json"
+      }
+    }
+  ],
+  "total_requests": 30,
+  "last_updated": "2026-08-31T18:31:13.666897"
 }

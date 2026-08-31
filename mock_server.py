@@ -11,14 +11,17 @@
 
 import uuid
 import asyncio
-from datetime import datetime
+import os
+from datetime import datetime, timezone, timedelta
 from typing import Dict, List, Any, Optional
 from fastapi import FastAPI, Request, HTTPException, Query, Form
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from typing import Optional, Dict, Any
 
-from data_store import DataStore, RequestHistoryStore
+from data_store import DataStore, RequestHistoryStore, TokenStore
+from validators import EntityValidator, RequestValidator, ValidationError, TokenUtils
+from fastapi import Depends
 from validators import EntityValidator, RequestValidator, ValidationError
 
 # Инициализация приложения
@@ -38,6 +41,95 @@ history_store = RequestHistoryStore(
 # Хранилище бронирований (в памяти)
 bookings_db: Dict[int, Dict[str, Any]] = {}
 booking_id_counter: int = 1
+
+# ============================================================================
+# ЗАВИСИМОСТЬ ДЛЯ ВАЛИДАЦИИ JWT ТОКЕНА
+# ============================================================================
+
+from fastapi import Header, status
+
+
+async def get_current_user(
+    authorization: Optional[str] = Header(None, description="Bearer токен в заголовке Authorization")
+) -> Dict[str, Any]:
+    """
+    FastAPI зависимость для валидации Bearer access токена.
+    
+    Использует:
+    1. Проверку JWT подписи и срока действия через python-jose
+    2. Проверку что токен не отозван через TokenStore
+    
+    Возвращает словарь с user_id и ролью.
+    Выбрасывает HTTPException 401 при любой ошибке.
+    """
+    if not authorization:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Отсутствует заголовок Authorization",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    # Извлекаем токен из "Bearer <token>"
+    parts = authorization.split()
+    if len(parts) != 2 or parts[0].lower() != "bearer":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Неверный формат заголовка Authorization. Используйте: Bearer <token>",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    token = parts[1]
+    
+    # Декодируем JWT
+    payload = TokenUtils.decode_token(token, expected_type="access")
+    if payload is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Access токен недействителен или истёк",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    # Проверяем что токен не отозван в TokenStore
+    token_data = token_store.validate_access_token(token)
+    if token_data is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Access токен отозван или истёк",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    return {
+        "user_id": payload.get("sub"),
+        "role": payload.get("role", "user"),
+        "token_jti": token_data["token_id"],
+    }
+
+# ============================================================================
+# КОНФИГУРАЦИЯ АВТОРИЗАЦИИ
+# ============================================================================
+
+# Секретный ключ для подписи JWT (по умолчанию для демо)
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "mock-server-secret-key-for-training-only")
+JWT_ALGORITHM = "HS256"
+
+# Время жизни токенов (в секундах)
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "5"))
+REFRESH_TOKEN_EXPIRE_MINUTES = int(os.getenv("REFRESH_TOKEN_EXPIRE_MINUTES", "60"))
+
+# Тестовые пользователи (для обучения)
+TEST_USERS = {
+    "admin": {
+        "password": "admin123",
+        "role": "admin",
+    },
+    "user": {
+        "password": "user123",
+        "role": "user",
+    },
+}
+
+# Инициализация хранилища токенов
+token_store = TokenStore()
 
 
 # ============================================================================
@@ -74,6 +166,45 @@ class BookingCreate(BaseModel):
     depositpaid: bool = Field(..., description="Оплачен ли депозит")
     bookingdates: BookingDates = Field(..., description="Даты бронирования")
     additionalneeds: Optional[str] = Field("None", description="Дополнительные потребности")
+
+
+# ============================================================================
+# МОДЕЛИ ДЛЯ АВТОРИЗАЦИИ
+# ============================================================================
+
+class LoginRequest(BaseModel):
+    """Модель для запроса входа"""
+    username: str = Field(..., min_length=1, max_length=50, description="Имя пользователя")
+    password: str = Field(..., min_length=1, description="Пароль")
+
+
+class TokenResponse(BaseModel):
+    """Модель ответа с токенами"""
+    access_token: str = Field(..., description="JWT access токен")
+    refresh_token: str = Field(..., description="JWT refresh токен")
+    token_type: str = Field("bearer", description="Тип токена")
+    expires_in: int = Field(..., description="Время жизни access токена в секундах")
+
+
+class TokenRefreshRequest(BaseModel):
+    """Модель для запроса обновления токена"""
+    refresh_token: str = Field(..., description="Действующий refresh токен")
+
+
+class TokenValidationResponse(BaseModel):
+    """Модель ответа валидации токена"""
+    valid: bool = Field(..., description="Валиден ли токен")
+    token_type: Optional[str] = Field(None, description="Тип токена")
+    user_id: Optional[str] = Field(None, description="ID пользователя")
+    expired: Optional[bool] = Field(None, description="Истёк ли токен")
+    revoked: Optional[bool] = Field(None, description="Отозван ли токен")
+    expires_at: Optional[str] = Field(None, description="Дата истечения")
+    message: str = Field(..., description="Описание статуса")
+
+
+class LogoutRequest(BaseModel):
+    """Модель для запроса выхода"""
+    token: Optional[str] = Field(None, description="Токен для отзыва (access или refresh)")
 
 
 # ============================================================================
@@ -463,6 +594,238 @@ def delete_booking(booking_id: int):
 
 
 # ============================================================================
+# ЭНДПОИНТЫ АВТОРИЗАЦИИ
+# ============================================================================
+
+@app.post("/auth/login", response_model=TokenResponse, status_code=200)
+async def login(request: LoginRequest):
+    """
+    Аутентификация пользователя и получение пары токенов.
+    
+    - **username**: имя пользователя (admin или user)
+    - **password**: пароль
+    
+    Возвращает:
+    - access_token (живёт 5 минут)
+    - refresh_token (живёт 60 минут)
+    - token_type: "bearer"
+    - expires_in: время жизни access токена в секундах
+    
+    Тестовые пользователи:
+    - admin / admin123
+    - user / user123
+    """
+    # Проверяем учётные данные
+    user_data = TEST_USERS.get(request.username)
+    if not user_data or user_data["password"] != request.password:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Неверное имя пользователя или пароль",
+        )
+    
+    user_id = request.username
+    role = user_data["role"]
+    
+    # Вычисляем время истечения
+    access_expires = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    refresh_expires = datetime.utcnow() + timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES)
+    
+    # Создаём JWT токены
+    access_token = TokenUtils.create_access_token(
+        data={"sub": user_id, "role": role},
+        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
+    )
+    refresh_token = TokenUtils.create_refresh_token(
+        data={"sub": user_id, "role": role},
+        expires_delta=timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES),
+    )
+    
+    # Сохраняем метаданные в TokenStore
+    token_store.store_access_token(access_token, user_id, access_expires)
+    token_store.store_refresh_token(refresh_token, user_id, refresh_expires)
+    
+    print(f"✅ Пользователь '{user_id}' вошёл в систему")
+    
+    return TokenResponse(
+        access_token=access_token,
+        refresh_token=refresh_token,
+        token_type="bearer",
+        expires_in=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+    )
+
+
+@app.post("/auth/refresh", response_model=TokenResponse, status_code=200)
+async def refresh_token_endpoint(request: TokenRefreshRequest):
+    """
+    Обновление токенов с ротацией refresh токена.
+    
+    - Принимает действующий refresh токен
+    - Отзывает старый refresh токен (ротация)
+    - Выдаёт новую пару access + refresh токенов
+    - Старый access токен также отзывается
+    
+    Best Practice: ротация refresh токена предотвращает кражу сессии.
+    """
+    # Декодируем refresh токен
+    payload = TokenUtils.decode_token(request.refresh_token, expected_type="refresh")
+    if payload is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Refresh токен недействителен или истёк",
+        )
+    
+    user_id = payload.get("sub")
+    
+    # Проверяем что refresh токен не отозван
+    token_data = token_store.validate_refresh_token(request.refresh_token)
+    if token_data is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Refresh токен отозван или истёк. Требуется повторный вход.",
+        )
+    
+    # Генерируем новые токены
+    access_expires = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    refresh_expires = datetime.utcnow() + timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES)
+    
+    new_access = TokenUtils.create_access_token(
+        data={"sub": user_id, "role": payload.get("role", "user")},
+        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
+    )
+    new_refresh = TokenUtils.create_refresh_token(
+        data={"sub": user_id, "role": payload.get("role", "user")},
+        expires_delta=timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES),
+    )
+    
+    # Ротируем: отзываем старый refresh, сохраняем новые
+    token_store.rotate_refresh_token(
+        old_refresh_token=request.refresh_token,
+        new_access=new_access,
+        new_refresh=new_refresh,
+        user_id=user_id,
+        access_expires=access_expires,
+        refresh_expires=refresh_expires,
+    )
+    
+    print(f"✅ Токены обновлены для пользователя '{user_id}' (ротация)")
+    
+    return TokenResponse(
+        access_token=new_access,
+        refresh_token=new_refresh,
+        token_type="bearer",
+        expires_in=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+    )
+
+
+@app.post("/auth/logout", status_code=200)
+async def logout(request: LogoutRequest):
+    """
+    Выход из системы - отзыв токена.
+    
+    - Отзывает указанный токен (access или refresh)
+    - Токен немедленно становится недействительным
+    - Если token не указан, отзываются все токены пользователя из заголовка
+    """
+    if not request.token:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Укажите токен для отзыва в поле 'token'",
+        )
+    
+    revoked = token_store.revoke_token(request.token)
+    
+    if revoked:
+        print(f"🔒 Токен отозван (logout)")
+        return {"message": "Успешный выход. Токен отозван."}
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Токен не найден или уже отозван",
+        )
+
+
+@app.get("/auth/validate", response_model=TokenValidationResponse)
+async def validate_token(token: str = Query(..., description="Токен для проверки")):
+    """
+    Проверка статуса токена. Полезно для отладки во время обучения.
+    
+    Возвращает:
+    - valid: валиден ли токен
+    - token_type: тип токена (access/refresh)
+    - expired: истёк ли токен
+    - revoked: отозван ли токен
+    - user_id: владелец токена
+    - expires_at: дата истечения
+    - message: описание статуса
+    """
+    token_info = token_store.get_token_info(token)
+    
+    if token_info is None:
+        # Проверяем JWT структуру
+        jwt_payload = TokenUtils.decode_token(token, expected_type="access")
+        if jwt_payload is None:
+            jwt_payload = TokenUtils.decode_token(token, expected_type="refresh")
+        
+        if jwt_payload is None:
+            return TokenValidationResponse(
+                valid=False,
+                message="Токен не найден и не является валидным JWT",
+            )
+        else:
+            return TokenValidationResponse(
+                valid=False,
+                token_type=jwt_payload.get("type"),
+                user_id=jwt_payload.get("sub"),
+                expired=False,
+                revoked=True,
+                message="Токен валиден по JWT, но отозван в хранилище",
+            )
+    
+    is_expired = datetime.utcnow() > datetime.fromisoformat(token_info["expires_at"].replace("+00:00", ""))
+    is_valid = not token_info["revoked"] and not is_expired
+    
+    if is_valid:
+        message = "Токен валиден"
+    elif token_info["revoked"]:
+        message = "Токен отозван"
+    else:
+        message = "Токен истёк"
+    
+    return TokenValidationResponse(
+        valid=is_valid,
+        token_type=token_info["token_type"],
+        user_id=token_info["user_id"],
+        expired=is_expired,
+        revoked=token_info["revoked"],
+        expires_at=token_info["expires_at"],
+        message=message,
+    )
+
+
+@app.get("/protected/data")
+async def get_protected_data(current_user: Dict[str, Any] = Depends(get_current_user)):
+    """
+    Защищённый ресурс - требует валидный Bearer access токен.
+    
+    Демонстрирует использование FastAPI Depends() для защиты эндпоинта.
+    Возвращает 401 при отсутствии или невалидном токене.
+    """
+    return {
+        "message": "Доступ к защищённым данным получен!",
+        "user_id": current_user["user_id"],
+        "role": current_user["role"],
+        "sensitive_data": {
+            "api_key": "demo-key-12345",
+            "user_profile": {
+                "id": current_user["user_id"],
+                "role": current_user["role"],
+                "permissions": ["read", "write"] if current_user["role"] == "admin" else ["read"],
+            },
+        },
+    }
+
+
+# ============================================================================
 # Системные endpoints
 # ============================================================================
 
@@ -479,7 +842,10 @@ async def root():
             "Pagination support",
             "Multiple query parameters support",
             "Booking management API",
-            "Swagger UI documentation"
+            "Swagger UI documentation",
+            "JWT authentication (access + refresh tokens)",
+            "Token rotation on refresh",
+            "Protected resource endpoints"
         ],
         "endpoints": {
             "POST /entities": "Создать новую сущность (с валидацией)",
@@ -494,7 +860,12 @@ async def root():
             "GET /inspector/history": "Просмотреть историю запросов",
             "GET /inspector/history/clear": "Очистить историю запросов",
             "GET /inspector/stats": "Статистика сервера",
-            "GET /docs": "Swagger UI интерфейс"
+            "GET /docs": "Swagger UI интерфейс",
+            "POST /auth/login": "Аутентификация и получение токенов",
+            "POST /auth/refresh": "Обновление токенов (ротация)",
+            "POST /auth/logout": "Выход - отзыв токена",
+            "GET /auth/validate": "Проверка статуса токена",
+            "GET /protected/data": "Защищённый ресурс (требуется Bearer токен)"
         },
         "swagger_ui": "http://127.0.0.1:8000/docs",
         "request_history": "http://127.0.0.1:8000/inspector/history",
@@ -538,6 +909,9 @@ if __name__ == "__main__":
     print("📋 История запросов:   http://127.0.0.1:8000/inspector/history")
     print("📊 Статистика:         http://127.0.0.1:8000/inspector/stats")
     print("🏠 Главная страница:   http://127.0.0.1:8000/")
+    print("🔐 Аутентификация:     http://127.0.0.1:8000/auth/login")
+    print("🔄 Обновление токенов: http://127.0.0.1:8000/auth/refresh")
+    print("🔒 Защищённые данные:  http://127.0.0.1:8000/protected/data")
     print("💾 Хранилище:          data/entities.json")
     print("📝 История:            data/request_history.json")
     print("=" * 70)
@@ -548,6 +922,10 @@ if __name__ == "__main__":
     print("   ✅ Логирование всех запросов")
     print("   ✅ Множественные query параметры")
     print("   ✅ API для работы с бронированиями")
+    print("   ✅ JWT аутентификация (access + refresh токены)")
+    print("   ✅ Ротация refresh токенов")
+    print("   ✅ Защищённые ресурсы с Bearer авторизацией")
+    print("   ✅ Проверка статуса токенов")
     print("=" * 70)
     
     uvicorn.run(app, host="127.0.0.1", port=8000)

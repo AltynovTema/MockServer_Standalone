@@ -5,7 +5,8 @@
 
 import json
 import os
-from datetime import datetime
+import uuid
+from datetime import datetime, timezone
 from typing import Dict, List, Any, Optional
 from pathlib import Path
 
@@ -143,3 +144,126 @@ class RequestHistoryStore:
     
     def save(self):
         self._save_to_file()
+
+
+# ============================================================================
+# ХРАНИЛИЩЕ ТОКЕНОВ
+# ============================================================================
+
+
+class TokenStore:
+    """Хранилище токенов в памяти с поддержкой ротации и отзыва"""
+    
+    def __init__(self):
+        # Ключ: token_string, Значение: dict с метаданными
+        self.access_tokens: Dict[str, Dict[str, Any]] = {}
+        self.refresh_tokens: Dict[str, Dict[str, Any]] = {}
+    
+    def store_access_token(self, token: str, user_id: str, expires_at: datetime):
+        """Сохраняет access токен"""
+        # Сохраняем как offset-naive datetime (без timezone info) для совместимости с JWT
+        expires_naive = expires_at.replace(tzinfo=None) if expires_at.tzinfo else expires_at
+        self.access_tokens[token] = {
+            "token_id": str(uuid.uuid4()),
+            "user_id": user_id,
+            "token_type": "access",
+            "created_at": datetime.utcnow(),
+            "expires_at": expires_naive,
+            "revoked": False,
+        }
+    
+    def store_refresh_token(self, token: str, user_id: str, expires_at: datetime):
+        """Сохраняет refresh токен"""
+        # Сохраняем как offset-naive datetime (без timezone info) для совместимости с JWT
+        expires_naive = expires_at.replace(tzinfo=None) if expires_at.tzinfo else expires_at
+        self.refresh_tokens[token] = {
+            "token_id": str(uuid.uuid4()),
+            "user_id": user_id,
+            "token_type": "refresh",
+            "created_at": datetime.utcnow(),
+            "expires_at": expires_naive,
+            "revoked": False,
+        }
+    
+    def validate_access_token(self, token: str) -> Optional[Dict[str, Any]]:
+        """
+        Проверяет access токен.
+        Возвращает метаданные если валиден, None если не найден/истёк/отозван.
+        """
+        token_data = self.access_tokens.get(token)
+        if not token_data:
+            return None
+        if token_data["revoked"]:
+            return None
+        if datetime.utcnow() > token_data["expires_at"]:
+            return None
+        return token_data
+    
+    def validate_refresh_token(self, token: str) -> Optional[Dict[str, Any]]:
+        """
+        Проверяет refresh токен.
+        Возвращает метаданные если валиден, None если не найден/истёк/отозван.
+        """
+        token_data = self.refresh_tokens.get(token)
+        if not token_data:
+            return None
+        if token_data["revoked"]:
+            return None
+        if datetime.utcnow() > token_data["expires_at"]:
+            return None
+        return token_data
+    
+    def revoke_token(self, token: str) -> bool:
+        """Отзывает токен (любого типа). Возвращает True если токен найден и отозван."""
+        # Сначала ищем в access токенах
+        if token in self.access_tokens:
+            self.access_tokens[token]["revoked"] = True
+            return True
+        # Затем в refresh токенах
+        if token in self.refresh_tokens:
+            self.refresh_tokens[token]["revoked"] = True
+            return True
+        return False
+    
+    def rotate_refresh_token(self, old_refresh_token: str, new_access: str, new_refresh: str, user_id: str, access_expires: datetime, refresh_expires: datetime):
+        """
+        Ротирует refresh токен: отзывает старый, сохраняет новый.
+        """
+        # Отзываем старый refresh токен
+        if old_refresh_token in self.refresh_tokens:
+            self.refresh_tokens[old_refresh_token]["revoked"] = True
+        # Сохраняем новые токены
+        self.store_access_token(new_access, user_id, access_expires)
+        self.store_refresh_token(new_refresh, user_id, refresh_expires)
+    
+    def get_token_info(self, token: str) -> Optional[Dict[str, Any]]:
+        """Получает информацию о токене (любого типа) для эндпоинта валидации."""
+        if token in self.access_tokens:
+            data = self.access_tokens[token]
+            return {
+                "token_type": "access",
+                "user_id": data["user_id"],
+                "created_at": data["created_at"].isoformat(),
+                "expires_at": data["expires_at"].isoformat(),
+                "revoked": data["revoked"],
+                "expired": datetime.utcnow() > data["expires_at"],
+            }
+        if token in self.refresh_tokens:
+            data = self.refresh_tokens[token]
+            return {
+                "token_type": "refresh",
+                "user_id": data["user_id"],
+                "created_at": data["created_at"].isoformat(),
+                "expires_at": data["expires_at"].isoformat(),
+                "revoked": data["revoked"],
+                "expired": datetime.utcnow() > data["expires_at"],
+            }
+        return None
+    
+    def count(self) -> int:
+        """Общее количество активных (не отозванных) токенов."""
+        active = 0
+        for t in list(self.access_tokens.values()) + list(self.refresh_tokens.values()):
+            if not t["revoked"]:
+                active += 1
+        return active

@@ -236,3 +236,254 @@ class TestNegative:
         booking_id = 999999
         response = requests.delete(f"{base_url}/{booking_id}")
         assert response.status_code == 404
+
+
+# ============================================================================
+# ТЕСТЫ ДЛЯ АВТОРИЗАЦИИ
+# ============================================================================
+
+
+class TestAuthPositive:
+    """Позитивные тесты для JWT аутентификации"""
+    
+    def test_auth_login_success(self, url_fast_api):
+        """TC-A001: Успешный вход с валидными учётными данными"""
+        response = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "admin", "password": "admin123"},
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert "access_token" in data
+        assert "refresh_token" in data
+        assert data["token_type"] == "bearer"
+        assert data["expires_in"] == 300  # 5 минут * 60
+    
+    def test_auth_login_different_users(self, url_fast_api):
+        """TC-A002: Вход разными пользователями возвращает разные токены"""
+        admin_resp = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "admin", "password": "admin123"},
+        )
+        user_resp = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "user", "password": "user123"},
+        )
+        assert admin_resp.status_code == 200
+        assert user_resp.status_code == 200
+        admin_data = admin_resp.json()
+        user_data = user_resp.json()
+        assert admin_data["access_token"] != user_data["access_token"]
+    
+    def test_protected_data_with_valid_token(self, url_fast_api):
+        """TC-A003: Доступ к защищённым данным с валидным токеном"""
+        # Сначала получаем токен
+        login_resp = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "admin", "password": "admin123"},
+        )
+        access_token = login_resp.json()["access_token"]
+        
+        # Запрашиваем защищённые данные
+        response = requests.get(
+            f"{url_fast_api}/protected/data",
+            headers={"Authorization": f"Bearer {access_token}"},
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert "sensitive_data" in data
+        assert data["user_id"] == "admin"
+    
+    def test_token_refresh(self, url_fast_api):
+        """TC-A004: Обновление токенов через refresh endpoint"""
+        # Получаем исходные токены
+        login_resp = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "user", "password": "user123"},
+        )
+        refresh_token = login_resp.json()["refresh_token"]
+        
+        # Обновляем
+        refresh_resp = requests.post(
+            f"{url_fast_api}/auth/refresh",
+            json={"refresh_token": refresh_token},
+        )
+        assert refresh_resp.status_code == 200
+        data = refresh_resp.json()
+        assert "access_token" in data
+        assert "refresh_token" in data
+        # Новый refresh токен отличается от старого (ротация)
+        assert data["refresh_token"] != refresh_token
+    
+    def test_token_validation_valid(self, url_fast_api):
+        """TC-A005: Валидация валидного токена"""
+        login_resp = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "admin", "password": "admin123"},
+        )
+        access_token = login_resp.json()["access_token"]
+        
+        response = requests.get(
+            f"{url_fast_api}/auth/validate",
+            params={"token": access_token},
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert data["valid"] is True
+        assert data["token_type"] == "access"
+        assert data["user_id"] == "admin"
+    
+    def test_token_logout(self, url_fast_api):
+        """TC-A006: Выход из системы - отзыв токена"""
+        # Получаем токен
+        login_resp = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "admin", "password": "admin123"},
+        )
+        access_token = login_resp.json()["access_token"]
+        
+        # Логаут
+        logout_resp = requests.post(
+            f"{url_fast_api}/auth/logout",
+            json={"token": access_token},
+        )
+        assert logout_resp.status_code == 200
+        
+        # Токен больше не должен работать
+        response = requests.get(
+            f"{url_fast_api}/protected/data",
+            headers={"Authorization": f"Bearer {access_token}"},
+        )
+        assert response.status_code == 401
+    
+    def test_full_token_lifecycle(self, url_fast_api):
+        """TC-A007: Полный цикл жизни токена (login -> use -> refresh -> use -> logout)"""
+        # 1. Логин
+        login_resp = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "admin", "password": "admin123"},
+        )
+        assert login_resp.status_code == 200
+        tokens = login_resp.json()
+        
+        # 2. Используем access токен
+        protected_resp = requests.get(
+            f"{url_fast_api}/protected/data",
+            headers={"Authorization": f"Bearer {tokens['access_token']}"},
+        )
+        assert protected_resp.status_code == 200
+        
+        # 3. Обновляем токены
+        refresh_resp = requests.post(
+            f"{url_fast_api}/auth/refresh",
+            json={"refresh_token": tokens["refresh_token"]},
+        )
+        assert refresh_resp.status_code == 200
+        new_tokens = refresh_resp.json()
+        
+        # 4. Используем новые токены
+        protected_resp2 = requests.get(
+            f"{url_fast_api}/protected/data",
+            headers={"Authorization": f"Bearer {new_tokens['access_token']}"},
+        )
+        assert protected_resp2.status_code == 200
+        
+        # 5. Выходим
+        logout_resp = requests.post(
+            f"{url_fast_api}/auth/logout",
+            json={"token": new_tokens["access_token"]},
+        )
+        assert logout_resp.status_code == 200
+
+
+class TestAuthNegative:
+    """Негативные тесты для JWT аутентификации"""
+    
+    def test_auth_login_wrong_password(self, url_fast_api):
+        """TC-A010: Вход с неверным паролем"""
+        response = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "admin", "password": "wrong_password"},
+        )
+        assert response.status_code == 401
+        data = response.json()
+        assert "detail" in data
+    
+    def test_protected_data_without_token(self, url_fast_api):
+        """TC-A008: Доступ к защищённым данным без токена"""
+        response = requests.get(f"{url_fast_api}/protected/data")
+        assert response.status_code == 401
+    
+    def test_protected_data_with_invalid_token(self, url_fast_api):
+        """TC-A009: Доступ к защищённым данным с невалидным токеном"""
+        response = requests.get(
+            f"{url_fast_api}/protected/data",
+            headers={"Authorization": "Bearer invalid_token_here"},
+        )
+        assert response.status_code == 401
+    
+    def test_token_refresh_with_expired_token(self, url_fast_api):
+        """TC-A011: Обновление с истёкшим refresh токеном"""
+        # Используем заведомо невалидный refresh токен
+        response = requests.post(
+            f"{url_fast_api}/auth/refresh",
+            json={"refresh_token": "invalid.refresh.token"},
+        )
+        assert response.status_code == 401
+    
+    def test_token_refresh_with_used_refresh_token(self, url_fast_api):
+        """TC-A012: Обновление с уже использованным refresh токеном (ротация)"""
+        # Получаем токены
+        login_resp = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "user", "password": "user123"},
+        )
+        refresh_token = login_resp.json()["refresh_token"]
+        
+        # Первое обновление - успешно
+        refresh_resp1 = requests.post(
+            f"{url_fast_api}/auth/refresh",
+            json={"refresh_token": refresh_token},
+        )
+        assert refresh_resp1.status_code == 200
+        new_tokens = refresh_resp1.json()
+        
+        # Пытаемся использовать старый refresh токен снова - должно отказаться
+        refresh_resp2 = requests.post(
+            f"{url_fast_api}/auth/refresh",
+            json={"refresh_token": refresh_token},
+        )
+        assert refresh_resp2.status_code == 401
+    
+    def test_token_validation_of_revoked_token(self, url_fast_api):
+        """TC-A013: Валидация отозванного токена"""
+        # Получаем токен
+        login_resp = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "admin", "password": "admin123"},
+        )
+        access_token = login_resp.json()["access_token"]
+        
+        # Отозываем токен
+        requests.post(
+            f"{url_fast_api}/auth/logout",
+            json={"token": access_token},
+        )
+        
+        # Проверяем валидацию
+        response = requests.get(
+            f"{url_fast_api}/auth/validate",
+            params={"token": access_token},
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert data["valid"] is False
+        assert data["revoked"] is True
+    
+    def test_logout_without_token(self, url_fast_api):
+        """TC-A014: Выход без указания токена"""
+        response = requests.post(
+            f"{url_fast_api}/auth/logout",
+            json={},
+        )
+        assert response.status_code == 400

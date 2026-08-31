@@ -3,7 +3,9 @@
 Содержит классы для валидации сущностей и запросов.
 """
 
+import uuid
 from typing import Dict, Any, Optional
+from datetime import datetime, timedelta
 
 
 class ValidationError(Exception):
@@ -155,3 +157,74 @@ class RequestValidator:
             raise ValidationError("Entity ID cannot be whitespace only")
         
         return entity_id.strip()
+
+
+# ============================================================================
+# УТИЛИТЫ ДЛЯ РАБОТЫ С JWT ТОКЕНАМИ
+# ============================================================================
+
+# Импортируем конфигурацию из mock_server.py
+# Эти переменные будут определены при импорте mock_server
+JWT_SECRET_KEY = "mock-server-secret-key-for-training-only"
+JWT_ALGORITHM = "HS256"
+
+
+class TokenUtils:
+    """Утилиты для работы с JWT токенами"""
+    
+    @staticmethod
+    def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
+        """
+        Создает JWT access токен.
+        
+        Args:
+            data: Словарь с данными (обычно sub=user_id)
+            expires_delta: Длительность жизни токена
+            
+        Returns:
+            Закодированный JWT токен
+        """
+        from jose import jwt, JWTError
+        to_encode = data.copy()
+        expire = datetime.now() + (expires_delta or timedelta(minutes=15))
+        to_encode.update({"exp": expire, "type": "access", "jti": str(uuid.uuid4())})
+        return jwt.encode(to_encode, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
+    
+    @staticmethod
+    def create_refresh_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
+        """
+        Создает JWT refresh токен.
+        
+        Args:
+            data: Словарь с данными (обычно sub=user_id)
+            expires_delta: Длительность жизни токена
+            
+        Returns:
+            Закодированный JWT токен
+        """
+        from jose import jwt, JWTError
+        to_encode = data.copy()
+        expire = datetime.now() + (expires_delta or timedelta(hours=1))
+        to_encode.update({"exp": expire, "type": "refresh", "jti": str(uuid.uuid4())})
+        return jwt.encode(to_encode, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
+    
+    @staticmethod
+    def decode_token(token: str, expected_type: str = "access") -> Optional[Dict[str, Any]]:
+        """
+        Декодирует и валидирует JWT токен.
+        
+        Args:
+            token: JWT токен
+            expected_type: Ожидаемый тип токена ("access" или "refresh")
+            
+        Returns:
+            Словарь с claims если токен валиден, None если невалиден
+        """
+        from jose import jwt, JWTError
+        try:
+            payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
+            if payload.get("type") != expected_type:
+                return None
+            return payload
+        except JWTError:
+            return None
