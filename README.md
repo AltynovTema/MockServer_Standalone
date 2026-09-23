@@ -9,7 +9,6 @@
 ```bash
 git clone https://github.com/ваш-username/MockServer_Standalone.git
 cd MockServer_Standalone
-pip install -r requirements.txt
 ```
 
 ### Ручная установка
