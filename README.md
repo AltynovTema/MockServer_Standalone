@@ -2,6 +2,29 @@
 
 Отдельный проект мок-сервера для использования в учебных модулях.
 
+## 📦 Установка
+
+### Клонирование из Git
+
+```bash
+git clone https://github.com/ваш-username/MockServer_Standalone.git
+cd MockServer_Standalone
+pip install -r requirements.txt
+```
+
+### Ручная установка
+
+1. Скачайте архив репозитория (Download ZIP)
+2. Распакуйте в нужную папку
+3. Установите зависимости:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+
 ## 📁 Структура проекта
 
 ```
@@ -491,97 +514,6 @@ pytest test/test_api.py::TestRolesNegative -v
 ```
 
 Подробнее: [RUN_TESTS.md](RUN_TESTS.md)
-
----
-
-## 📦 Git — Загрузка на репозиторий
-
-### Инициализация репозитория (если ещё не инициализирован)
-
-```bash
-# Инициализировать git репозиторий
-git init
-
-# Добавить удалённый репозиторий (замените URL на ваш)
-git remote add origin https://github.com/ваш-username/имя-репозитория.git
-```
-
-### Добавление и коммит изменений
-
-```bash
-# Проверить статус файлов
-git status
-
-# Добавить все файлы для коммита
-git add .
-
-# Создать коммит с описанием
-git commit -m "Enhanced Mock Server v2.0 - JWT auth, RBAC, persistent storage, validation"
-```
-
-### Загрузка на удалённый репозиторий
-
-```bash
-# Загрузить на main ветку
-git push -u origin main
-
-# Или на master ветку
-git push -u origin master
-```
-
-### Работа с существующим репозиторием
-
-```bash
-# Добавить конкретный файл
-git add mock_server.py
-
-# Добавить все изменённые файлы
-git add -A
-
-# Коммит с подробным описанием
-git commit -m "Add JWT authentication with RBAC and refresh token rotation
-
-- Added login endpoint with access/refresh tokens
-- Implemented role hierarchy: USER, ADMIN, SUPER_ADMIN
-- Added token rotation on refresh
-- Added protected resource endpoint
-- Added /auth/me profile endpoint
-- Added granular permissions (entities:crUD, users:crUD, etc.)
-- Added token validation and revocation
-- 62 tests (23 positive, 6 negative, 15 auth, 20 RBAC)"
-
-# Загрузить изменения
-git push
-
-# Получить последние изменения с удалённого репозитория
-git pull origin main
-```
-
-### Полезные команды
-
-```bash
-# Посмотреть историю коммитов
-git log --oneline
-
-# Посмотреть изменения в файлах
-git diff
-
-# Отменить добавление файла из staging
-git reset HEAD файл.py
-
-# Удалить файл из репозитория
-git rm файл.py
-git commit -m "Remove unused file"
-
-# Создать новую ветку
-git checkout -b feature/new-endpoint
-
-# Переключиться на ветку
-git checkout main
-
-# Слить изменения из ветки
-git merge feature/new-endpoint
-```
 
 ---
 
