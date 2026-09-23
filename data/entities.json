@@ -445,8 +445,169 @@
       "id": "a3fac99f-c4c5-4298-9adb-1489e8119378",
       "created_at": "2026-08-31T18:31:13.591459",
       "updated_at": "2026-08-31T18:31:13.594316"
+    },
+    "afb00319-6f50-43bc-8e08-34b05558d54c": {
+      "name": "PerformanceTest",
+      "id": "afb00319-6f50-43bc-8e08-34b05558d54c",
+      "created_at": "2026-08-31T19:04:40.785379",
+      "updated_at": "2026-08-31T19:04:40.785390"
+    },
+    "d912c745-878b-430a-927c-8cdbc06f6ef9": {
+      "name": "TestEntity",
+      "data": {
+        "key": "value"
+      },
+      "id": "d912c745-878b-430a-927c-8cdbc06f6ef9",
+      "created_at": "2026-08-31T19:04:40.791284",
+      "updated_at": "2026-08-31T19:04:40.791290"
+    },
+    "2b0823a7-8116-46fa-ac5b-c0491fd056af": {
+      "name": "UpdatedName",
+      "data": {
+        "key": "value"
+      },
+      "id": "2b0823a7-8116-46fa-ac5b-c0491fd056af",
+      "created_at": "2026-08-31T19:04:40.800547",
+      "updated_at": "2026-08-31T19:04:40.804410"
+    },
+    "84fa8f79-acb8-4e2c-8dab-011bc2f795f3": {
+      "name": "PerformanceTest",
+      "id": "84fa8f79-acb8-4e2c-8dab-011bc2f795f3",
+      "created_at": "2026-08-31T19:04:54.098579",
+      "updated_at": "2026-08-31T19:04:54.098606"
+    },
+    "07a9e010-491b-4266-b3b2-ed6cbd9d4e5f": {
+      "name": "TestEntity",
+      "data": {
+        "key": "value"
+      },
+      "id": "07a9e010-491b-4266-b3b2-ed6cbd9d4e5f",
+      "created_at": "2026-08-31T19:04:54.110832",
+      "updated_at": "2026-08-31T19:04:54.110844"
+    },
+    "d1e4fb77-81fa-4cc7-875e-5057bce5abcc": {
+      "name": "UpdatedName",
+      "data": {
+        "key": "value"
+      },
+      "id": "d1e4fb77-81fa-4cc7-875e-5057bce5abcc",
+      "created_at": "2026-08-31T19:04:54.125919",
+      "updated_at": "2026-08-31T19:04:54.129612"
+    },
+    "3476ea42-37ac-44f6-8181-23ca49ae9e6c": {
+      "name": "PerformanceTest",
+      "id": "3476ea42-37ac-44f6-8181-23ca49ae9e6c",
+      "created_at": "2026-08-31T19:13:41.901363",
+      "updated_at": "2026-08-31T19:13:41.901384"
+    },
+    "835a2288-61cd-46b5-b698-eba12317a9fb": {
+      "name": "TestEntity",
+      "data": {
+        "key": "value"
+      },
+      "id": "835a2288-61cd-46b5-b698-eba12317a9fb",
+      "created_at": "2026-08-31T19:13:41.910037",
+      "updated_at": "2026-08-31T19:13:41.910043"
+    },
+    "26f6e049-d595-495b-a1bb-2781b73d656e": {
+      "name": "UpdatedName",
+      "data": {
+        "key": "value"
+      },
+      "id": "26f6e049-d595-495b-a1bb-2781b73d656e",
+      "created_at": "2026-08-31T19:13:41.920815",
+      "updated_at": "2026-08-31T19:13:41.923976"
+    },
+    "1e6b9776-0612-4b71-bd2d-30a8823d2b47": {
+      "name": "TestEntity",
+      "data": {
+        "key": "value"
+      },
+      "id": "1e6b9776-0612-4b71-bd2d-30a8823d2b47",
+      "created_at": "2026-09-23T15:53:22.690973",
+      "updated_at": "2026-09-23T15:53:22.690976"
+    },
+    "c679daef-1a8d-46c9-af19-b656d295fc52": {
+      "name": "PerformanceTest",
+      "id": "c679daef-1a8d-46c9-af19-b656d295fc52",
+      "created_at": "2026-09-23T17:06:20.094812",
+      "updated_at": "2026-09-23T17:06:20.094827"
+    },
+    "639c897c-09e7-4ff1-b995-f40358fd6805": {
+      "name": "TestEntity",
+      "data": {
+        "key": "value"
+      },
+      "id": "639c897c-09e7-4ff1-b995-f40358fd6805",
+      "created_at": "2026-09-23T17:06:20.105016",
+      "updated_at": "2026-09-23T17:06:20.105019"
+    },
+    "e7df5489-6395-4575-ba72-c09c339658f4": {
+      "name": "UpdatedName",
+      "data": {
+        "key": "value"
+      },
+      "id": "e7df5489-6395-4575-ba72-c09c339658f4",
+      "created_at": "2026-09-23T17:06:20.114773",
+      "updated_at": "2026-09-23T17:06:20.132335"
+    },
+    "3dc06ab0-f4ad-4bb5-8107-872073d85d9e": {
+      "name": "SuperAdminEntity",
+      "data": {
+        "createdBy": "superadmin"
+      },
+      "id": "3dc06ab0-f4ad-4bb5-8107-872073d85d9e",
+      "created_at": "2026-09-23T17:06:20.310549",
+      "updated_at": "2026-09-23T17:06:20.310552"
+    },
+    "f3da86d8-e57b-4926-a37f-34ecd0d6078d": {
+      "name": "UpdatedBySuperAdmin",
+      "data": {},
+      "id": "f3da86d8-e57b-4926-a37f-34ecd0d6078d",
+      "created_at": "2026-09-23T17:06:20.314018",
+      "updated_at": "2026-09-23T17:06:20.317094"
+    },
+    "e33d6bcf-e362-45c1-a410-331bede80876": {
+      "name": "PerformanceTest",
+      "id": "e33d6bcf-e362-45c1-a410-331bede80876",
+      "created_at": "2026-09-23T17:08:11.591175",
+      "updated_at": "2026-09-23T17:08:11.591187"
+    },
+    "8d5e514b-06b2-4dba-a08b-60fd33cd76fc": {
+      "name": "TestEntity",
+      "data": {
+        "key": "value"
+      },
+      "id": "8d5e514b-06b2-4dba-a08b-60fd33cd76fc",
+      "created_at": "2026-09-23T17:08:11.599330",
+      "updated_at": "2026-09-23T17:08:11.599339"
+    },
+    "27155921-b32b-4e2e-bfe1-cd1c84ea6ca2": {
+      "name": "UpdatedName",
+      "data": {
+        "key": "value"
+      },
+      "id": "27155921-b32b-4e2e-bfe1-cd1c84ea6ca2",
+      "created_at": "2026-09-23T17:08:11.612265",
+      "updated_at": "2026-09-23T17:08:11.618802"
+    },
+    "9a715720-b658-4475-b389-540882ff76d1": {
+      "name": "SuperAdminEntity",
+      "data": {
+        "createdBy": "superadmin"
+      },
+      "id": "9a715720-b658-4475-b389-540882ff76d1",
+      "created_at": "2026-09-23T17:08:11.719401",
+      "updated_at": "2026-09-23T17:08:11.719403"
+    },
+    "667189f1-af2f-4a63-b1f2-678f8f9a9150": {
+      "name": "UpdatedBySuperAdmin",
+      "data": {},
+      "id": "667189f1-af2f-4a63-b1f2-678f8f9a9150",
+      "created_at": "2026-09-23T17:08:11.721991",
+      "updated_at": "2026-09-23T17:08:11.724293"
     }
   },
-  "last_updated": "2026-08-31T18:31:13.600142",
-  "total_count": 76
+  "last_updated": "2026-09-23T17:08:11.731378",
+  "total_count": 96
 }

@@ -111,17 +111,19 @@ class TestPositive:
         assert get_response_data["firstname"] == sample_booking_data["firstname"]
         assert get_response_data["lastname"] == sample_booking_data["lastname"]
 
-    def test_slow_performance_query_param(self, url_fast_api):
+    def test_slow_performance_query_param(self, url_fast_api, superadmin_token):
         """TC-014: Проверка параметра задержки"""
+        headers = {"Authorization": f"Bearer {superadmin_token}"}
         path = '/entities?slow=2'
         data = {'name': 'PerformanceTest'}
-        response = requests.post(url_fast_api + path, json=data)
+        response = requests.post(url_fast_api + path, json=data, headers=headers)
         assert response.status_code == 201
 
-    def test_get_entity_by_id(self, url_fast_api):
+    def test_get_entity_by_id(self, url_fast_api, superadmin_token):
         """TC-015: Проверка получения сущности по ID"""
         create_data = {'name': 'TestEntity', 'data': {'key': 'value'}}
-        create_response = requests.post(f"{url_fast_api}/entities", json=create_data)
+        headers = {"Authorization": f"Bearer {superadmin_token}"}
+        create_response = requests.post(f"{url_fast_api}/entities", json=create_data, headers=headers)
         assert create_response.status_code == 201
         entity_id = create_response.json()['id']
         get_response = requests.get(f"{url_fast_api}/entities/{entity_id}")
@@ -141,25 +143,27 @@ class TestPositive:
         assert data['page'] == 1
         assert data['limit'] == 10
 
-    def test_update_entity(self, url_fast_api):
-        """TC-018: Проверка обновления сущности"""
+    def test_update_entity(self, url_fast_api, superadmin_token):
+        """TC-018: Проверка обновления сущности (требует SUPER_ADMIN)"""
+        headers = {"Authorization": f"Bearer {superadmin_token}"}
         create_data = {'name': 'OriginalName', 'data': {'key': 'value'}}
-        create_response = requests.post(f"{url_fast_api}/entities", json=create_data)
+        create_response = requests.post(f"{url_fast_api}/entities", json=create_data, headers=headers)
         assert create_response.status_code == 201
         entity_id = create_response.json()['id']
         update_data = {'name': 'UpdatedName'}
-        update_response = requests.put(f"{url_fast_api}/entities/{entity_id}", json=update_data)
+        update_response = requests.put(f"{url_fast_api}/entities/{entity_id}", json=update_data, headers=headers)
         assert update_response.status_code == 200
         updated_entity = update_response.json()['entity']
         assert updated_entity['name'] == 'UpdatedName'
 
-    def test_delete_entity(self, url_fast_api):
-        """TC-019: Проверка удаления сущности"""
+    def test_delete_entity(self, url_fast_api, superadmin_token):
+        """TC-019: Проверка удаления сущности (требует SUPER_ADMIN)"""
+        headers = {"Authorization": f"Bearer {superadmin_token}"}
         create_data = {'name': 'ToDelete', 'data': {'key': 'value'}}
-        create_response = requests.post(f"{url_fast_api}/entities", json=create_data)
+        create_response = requests.post(f"{url_fast_api}/entities", json=create_data, headers=headers)
         assert create_response.status_code == 201
         entity_id = create_response.json()['id']
-        delete_response = requests.delete(f"{url_fast_api}/entities/{entity_id}")
+        delete_response = requests.delete(f"{url_fast_api}/entities/{entity_id}", headers=headers)
         assert delete_response.status_code == 200
         get_response = requests.get(f"{url_fast_api}/entities/{entity_id}")
         assert get_response.status_code == 404
@@ -219,17 +223,19 @@ class TestNegative:
         assert response.status_code == 404
 
     def test_update_non_existing_entity(self, url_fast_api):
-        """TC-N004: Проверка обновления несуществующей сущности"""
+        """TC-N004: Проверка обновления несуществующей сущности (требует авторизацию)"""
         fake_id = "00000000-0000-0000-0000-000000000000"
         update_data = {'name': 'UpdatedName'}
         response = requests.put(f"{url_fast_api}/entities/{fake_id}", json=update_data)
-        assert response.status_code == 404
+        # Без токена возвращает 401 (требуется авторизация)
+        assert response.status_code == 401
 
     def test_delete_non_existing_entity(self, url_fast_api):
-        """TC-N005: Проверка удаления несуществующей сущности"""
+        """TC-N005: Проверка удаления несуществующей сущности (требует авторизацию)"""
         fake_id = "00000000-0000-0000-0000-000000000000"
         response = requests.delete(f"{url_fast_api}/entities/{fake_id}")
-        assert response.status_code == 404
+        # Без токена возвращает 401 (требуется авторизация)
+        assert response.status_code == 401
 
     def test_delete_non_existing_booking(self, base_url):
         """TC-N006: Проверка удаления несуществующего бронирования"""
@@ -487,3 +493,281 @@ class TestAuthNegative:
             json={},
         )
         assert response.status_code == 400
+
+
+# ============================================================================
+# ТЕСТЫ ДЛЯ СИСТЕМЫ РОЛЕЙ (RBAC)
+# ============================================================================
+
+
+class TestRolesPositive:
+    """Позитивные тесты для ролевой системы"""
+    
+    def test_login_superadmin_has_all_roles(self, url_fast_api):
+        """TC-R001: Супер-админ получает массив всех ролей"""
+        response = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "superadmin", "password": "superadmin123"},
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert "access_token" in data
+        # Декодируем JWT payload (base64)
+        import base64
+        parts = data["access_token"].split(".")
+        payload = base64.b64decode(parts[1] + "==")
+        import json
+        payload_data = json.loads(payload)
+        roles = payload_data.get("roles", [])
+        assert "USER" in roles
+        assert "ADMIN" in roles
+        assert "SUPER_ADMIN" in roles
+    
+    def test_login_admin_has_user_and_admin_roles(self, url_fast_api):
+        """TC-R002: Админ получает роли USER и ADMIN"""
+        response = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "admin", "password": "admin123"},
+        )
+        assert response.status_code == 200
+        data = response.json()
+        import base64, json
+        parts = data["access_token"].split(".")
+        payload = base64.b64decode(parts[1] + "==")
+        payload_data = json.loads(payload)
+        roles = payload_data.get("roles", [])
+        assert "USER" in roles
+        assert "ADMIN" in roles
+        assert "SUPER_ADMIN" not in roles
+    
+    def test_login_user_has_only_user_role(self, url_fast_api):
+        """TC-R003: Обычный пользователь получает только роль USER"""
+        response = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "user", "password": "user123"},
+        )
+        assert response.status_code == 200
+        data = response.json()
+        import base64, json
+        parts = data["access_token"].split(".")
+        payload = base64.b64decode(parts[1] + "==")
+        payload_data = json.loads(payload)
+        roles = payload_data.get("roles", [])
+        assert roles == ["USER"]
+    
+    def test_auth_me_returns_roles_and_permissions(self, url_fast_api, superadmin_token):
+        """TC-R004: /auth/me возвращает массив ролей и permissions"""
+        response = requests.get(
+            f"{url_fast_api}/auth/me",
+            headers={"Authorization": f"Bearer {superadmin_token}"},
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert "roles" in data
+        assert "highestRole" in data
+        assert "permissions" in data
+        assert "roleHierarchy" in data
+        assert data["highestRole"] == "SUPER_ADMIN"
+        assert isinstance(data["roles"], list)
+        assert "entities:create" in data["permissions"]
+    
+    def test_auth_me_user_permissions(self, url_fast_api, user_token):
+        """TC-R005: /auth/me для USER возвращает ограниченные permissions"""
+        response = requests.get(
+            f"{url_fast_api}/auth/me",
+            headers={"Authorization": f"Bearer {user_token}"},
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert data["highestRole"] == "USER"
+        assert data["roles"] == ["USER"]
+        permissions = data["permissions"]
+        assert "entities:read" in permissions
+        assert "entities:create" not in permissions
+        assert "users:delete" not in permissions
+    
+    def test_root_endpoint_shows_roles_info(self, url_fast_api):
+        """TC-R006: Корневой эндпоинт содержит информацию о ролях"""
+        response = requests.get(url_fast_api)
+        assert response.status_code == 200
+        data = response.json()
+        assert "roles" in data
+        assert "hierarchy" in data["roles"]
+        assert data["roles"]["hierarchy"]["SUPER_ADMIN"] > data["roles"]["hierarchy"]["ADMIN"]
+        assert data["roles"]["hierarchy"]["ADMIN"] > data["roles"]["hierarchy"]["USER"]
+    
+    def test_refresh_token_preserves_roles(self, url_fast_api):
+        """TC-R007: Обновление токена сохраняет массив ролей"""
+        # Логин как ADMIN
+        login_resp = requests.post(
+            f"{url_fast_api}/auth/login",
+            json={"username": "admin", "password": "admin123"},
+        )
+        refresh_token = login_resp.json()["refresh_token"]
+        
+        # Обновляем
+        refresh_resp = requests.post(
+            f"{url_fast_api}/auth/refresh",
+            json={"refresh_token": refresh_token},
+        )
+        assert refresh_resp.status_code == 200
+        new_access = refresh_resp.json()["access_token"]
+        
+        # Проверяем payload нового токена
+        import base64, json
+        parts = new_access.split(".")
+        payload = base64.b64decode(parts[1] + "==")
+        payload_data = json.loads(payload)
+        roles = payload_data.get("roles", [])
+        assert "USER" in roles
+        assert "ADMIN" in roles
+    
+    def test_super_admin_can_create_entity(self, url_fast_api, superadmin_token):
+        """TC-R008: SUPER_ADMIN может создавать сущности"""
+        headers = {"Authorization": f"Bearer {superadmin_token}"}
+        data = {"name": "SuperAdminEntity", "data": {"createdBy": "superadmin"}}
+        response = requests.post(f"{url_fast_api}/entities", json=data, headers=headers)
+        assert response.status_code == 201
+        response_data = response.json()
+        assert "id" in response_data
+        assert response_data["highestRole"] == "SUPER_ADMIN"
+    
+    def test_super_admin_can_update_entity(self, url_fast_api, superadmin_token):
+        """TC-R009: SUPER_ADMIN может обновлять сущности"""
+        headers = {"Authorization": f"Bearer {superadmin_token}"}
+        # Создаём
+        create_resp = requests.post(
+            f"{url_fast_api}/entities",
+            json={"name": "ToUpdate", "data": {}},
+            headers=headers,
+        )
+        assert create_resp.status_code == 201
+        entity_id = create_resp.json()["id"]
+        
+        # Обновляем
+        update_resp = requests.put(
+            f"{url_fast_api}/entities/{entity_id}",
+            json={"name": "UpdatedBySuperAdmin"},
+            headers=headers,
+        )
+        assert update_resp.status_code == 200
+        assert update_resp.json()["entity"]["name"] == "UpdatedBySuperAdmin"
+    
+    def test_super_admin_can_delete_entity(self, url_fast_api, superadmin_token):
+        """TC-R010: SUPER_ADMIN может удалять сущности"""
+        headers = {"Authorization": f"Bearer {superadmin_token}"}
+        # Создаём
+        create_resp = requests.post(
+            f"{url_fast_api}/entities",
+            json={"name": "ToBeDeleted", "data": {}},
+            headers=headers,
+        )
+        entity_id = create_resp.json()["id"]
+        
+        # Удаляем
+        delete_resp = requests.delete(
+            f"{url_fast_api}/entities/{entity_id}",
+            headers=headers,
+        )
+        assert delete_resp.status_code == 200
+        # Проверяем что удалена
+        get_resp = requests.get(f"{url_fast_api}/entities/{entity_id}")
+        assert get_resp.status_code == 404
+
+
+class TestRolesNegative:
+    """Негативные тесты для ролевой системы"""
+    
+    def test_user_cannot_create_entity(self, url_fast_api, user_token):
+        """TC-R011: USER не может создавать сущности (403)"""
+        headers = {"Authorization": f"Bearer {user_token}"}
+        data = {"name": "UnauthorizedCreate", "data": {}}
+        response = requests.post(f"{url_fast_api}/entities", json=data, headers=headers)
+        assert response.status_code == 403
+        assert "entities:create" in response.json()["detail"]
+    
+    def test_user_cannot_update_entity(self, url_fast_api, user_token):
+        """TC-R012: USER не может обновлять сущности (403)"""
+        headers = {"Authorization": f"Bearer {user_token}"}
+        update_resp = requests.put(
+            f"{url_fast_api}/entities/00000000-0000-0000-0000-000000000000",
+            json={"name": "test"},
+            headers=headers,
+        )
+        assert update_resp.status_code == 403
+    
+    def test_user_cannot_delete_entity(self, url_fast_api, user_token):
+        """TC-R013: USER не может удалять сущности (403)"""
+        headers = {"Authorization": f"Bearer {user_token}"}
+        delete_resp = requests.delete(
+            f"{url_fast_api}/entities/00000000-0000-0000-0000-000000000000",
+            headers=headers,
+        )
+        assert delete_resp.status_code == 403
+    
+    def test_admin_cannot_create_entity(self, url_fast_api, admin_token):
+        """TC-R014: ADMIN не может создавать сущности (403)"""
+        headers = {"Authorization": f"Bearer {admin_token}"}
+        data = {"name": "AdminCreateAttempt", "data": {}}
+        response = requests.post(f"{url_fast_api}/entities", json=data, headers=headers)
+        assert response.status_code == 403
+        assert "entities:create" in response.json()["detail"]
+    
+    def test_admin_cannot_delete_entity(self, url_fast_api, admin_token):
+        """TC-R015: ADMIN не может удалять сущности (403)"""
+        headers = {"Authorization": f"Bearer {admin_token}"}
+        delete_resp = requests.delete(
+            f"{url_fast_api}/entities/00000000-0000-0000-0000-000000000000",
+            headers=headers,
+        )
+        assert delete_resp.status_code == 403
+    
+    def test_admin_can_read_and_update_entity(self, url_fast_api, admin_token):
+        """TC-R016: ADMIN может читать и обновлять сущности (но не создавать/удалять)"""
+        headers = {"Authorization": f"Bearer {admin_token}"}
+        # ADMIN не может создать, но может читать публичные
+        get_resp = requests.get(f"{url_fast_api}/entities?page=1&limit=1")
+        assert get_resp.status_code == 200
+        # ADMIN не может обновить (entities:update требует SUPER_ADMIN)
+        update_resp = requests.put(
+            f"{url_fast_api}/entities/00000000-0000-0000-0000-000000000000",
+            json={"name": "test"},
+            headers=headers,
+        )
+        assert update_resp.status_code == 403
+    
+    def test_get_protected_data_requires_auth(self, url_fast_api):
+        """TC-R017: /protected/data требует авторизацию"""
+        response = requests.get(f"{url_fast_api}/protected/data")
+        assert response.status_code == 401
+    
+    def test_protected_data_returns_roles(self, url_fast_api, user_token):
+        """TC-R018: /protected/data возвращает массив ролей"""
+        headers = {"Authorization": f"Bearer {user_token}"}
+        response = requests.get(
+            f"{url_fast_api}/protected/data",
+            headers=headers,
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert "roles" in data
+        assert "highestRole" in data
+        assert data["highestRole"] == "USER"
+    
+    def test_no_token_cannot_access_protected(self, url_fast_api):
+        """TC-R019: Без токена доступ к защищённым эндпоинтам закрыт"""
+        response = requests.post(
+            f"{url_fast_api}/entities",
+            json={"name": "NoAuth"},
+        )
+        assert response.status_code == 401
+    
+    def test_invalid_token_returns_401(self, url_fast_api):
+        """TC-R020: Невалидный токен возвращает 401"""
+        headers = {"Authorization": "Bearer invalid_token_12345"}
+        response = requests.get(
+            f"{url_fast_api}/auth/me",
+            headers=headers,
+        )
+        assert response.status_code == 401
+

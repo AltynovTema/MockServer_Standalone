@@ -163,6 +163,144 @@ class RequestValidator:
 # УТИЛИТЫ ДЛЯ РАБОТЫ С JWT ТОКЕНАМИ
 # ============================================================================
 
+# ============================================================================
+# КОНСТАНТЫ И КОНФИГУРАЦИЯ РОЛЕЙ
+# ============================================================================
+
+# Иерархия ролей (индекс = уровень привилегий)
+ROLE_HIERARCHY = {
+    "USER": 0,
+    "ADMIN": 1,
+    "SUPER_ADMIN": 2,
+}
+
+# Порядок для сортировки (от lowest to highest)
+ROLE_ORDER = ["USER", "ADMIN", "SUPER_ADMIN"]
+
+# Карта разрешений для каждой роли
+ROLE_PERMISSIONS = {
+    "USER": {
+        "entities:read": True,
+        "reviews:create": True,
+        "tickets:pay": True,
+    },
+    "ADMIN": {
+        "entities:read": True,
+        "reviews:create": True,
+        "tickets:pay": True,
+        "users:read": True,
+        "users:update": True,
+        "users:delete": True,
+    },
+    "SUPER_ADMIN": {
+        "entities:read": True,
+        "reviews:create": True,
+        "tickets:pay": True,
+        "users:read": True,
+        "users:update": True,
+        "users:delete": True,
+        "entities:create": True,
+        "entities:update": True,
+        "entities:delete": True,
+        "genres:create": True,
+        "genres:update": True,
+        "genres:delete": True,
+    },
+}
+
+
+def get_highest_role(roles: list[str]) -> str:
+    """
+    Возвращает самую высокую роль из массива ролей.
+    
+    SUPER_ADMIN > ADMIN > USER
+    """
+    if not roles:
+        return "USER"
+    
+    highest = "USER"
+    for role in roles:
+        role_upper = role.upper().strip()
+        if role_upper in ROLE_HIERARCHY:
+            if ROLE_HIERARCHY[role_upper] > ROLE_HIERARCHY[highest]:
+                highest = role_upper
+    return highest
+
+
+def has_permission(user_roles: list[str], permission: str) -> bool:
+    """
+    Проверяет, есть ли у пользователя разрешение.
+    
+    Использует самую высокую роль для проверки прав.
+    """
+    highest = get_highest_role(user_roles)
+    role_perms = ROLE_PERMISSIONS.get(highest, {})
+    return role_perms.get(permission, False)
+
+
+def get_user_permissions(user_roles: list[str]) -> dict:
+    """
+    Возвращает карту разрешений для пользователя на основе его самой высокой роли.
+    """
+    highest = get_highest_role(user_roles)
+    return ROLE_PERMISSIONS.get(highest, {})
+
+
+class PermissionDeniedError(Exception):
+    """Исключение для отказа в доступе по роли"""
+    pass
+
+
+class RoleValidator:
+    """Валидатор и проверщик ролей"""
+    
+    @staticmethod
+    def validate_role(role: str) -> bool:
+        """Проверяет, что роль валидна"""
+        return role.upper().strip() in ROLE_HIERARCHY
+    
+    @staticmethod
+    def get_role_level(role: str) -> int:
+        """Возвращает уровень роли в иерархии"""
+        return ROLE_HIERARCHY.get(role.upper().strip(), 0)
+    
+    @staticmethod
+    def get_permissions_for_role(role: str) -> dict:
+        """Возвращает карту разрешений для роли"""
+        return ROLE_PERMISSIONS.get(role.upper().strip(), {})
+    
+    @staticmethod
+    def get_all_roles() -> list[str]:
+        """Возвращает список всех доступных ролей"""
+        return ROLE_ORDER.copy()
+    
+    @staticmethod
+    def check_permission(user_roles: list[str], permission: str) -> bool:
+        """
+        Проверяет, есть ли у пользователя нужное разрешение.
+        
+        Args:
+            user_roles: Массив ролей пользователя
+            permission: Требуемое разрешение (например, 'entities:read')
+            
+        Returns:
+            True если разрешение есть
+            
+        Raises:
+            PermissionDeniedError: Если разрешение отсутствует
+        """
+        if has_permission(user_roles, permission):
+            return True
+        raise PermissionDeniedError(
+            f"Access denied. Required permission: '{permission}'. "
+            f"Your highest role: '{get_highest_role(user_roles)}'"
+        )
+
+
+# Утилиты для работы с JWT токенами
+
+# Утилиты для работы с JWT токенами
+
 # Импортируем конфигурацию из mock_server.py
 # Эти переменные будут определены при импорте mock_server
 JWT_SECRET_KEY = "mock-server-secret-key-for-training-only"

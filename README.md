@@ -8,7 +8,7 @@
 MockServer_Standalone/
 ├── mock_server.py          # Основной сервер
 ├── data_store.py           # Хранилище данных и токенов
-├── validators.py           # Валидация и JWT утилиты
+├── validators.py           # Валидация, JWT утилиты и RBAC
 ├── requirements.txt        # Зависимости
 ├── start.sh               # Запуск (macOS/Linux)
 ├── start.bat              # Запуск (Windows)
@@ -61,16 +61,41 @@ start.bat         # Windows
 
 ---
 
-## 🔐 JWT Аутентификация
+## 🔐 JWT Аутентификация и Ролевая модель (RBAC)
 
-Сервер поддерживает полный цикл работы с JWT токенами для тренировки навыков OAuth 2.0.
+Сервер поддерживает полный цикл работы с JWT токенами и иерархическую систему ролей.
+
+### Иерархия ролей
+
+```
+SUPER_ADMIN (уровень 2)
+  ├── entities:create / update / delete
+  ├── genres:crUD
+  ├── users:read / update / delete
+  └── всё из ADMIN
+
+ADMIN (уровень 1)
+  ├── users:read / update / delete
+  └── всё из USER
+
+USER (уровень 0)
+  ├── entities:read
+  ├── reviews:create
+  └── tickets:pay
+```
+
+Каждая следующая роль включает **все** права предыдущих. В JWT-токене приходит **массив ролей**:
+- SUPER_ADMIN: `["USER", "ADMIN", "SUPER_ADMIN"]`
+- ADMIN: `["USER", "ADMIN"]`
+- USER: `["USER"]`
 
 ### Тестовые пользователи
 
-| Username | Password | Role   |
-|----------|----------|--------|
-| admin    | admin123 | admin  |
-| user     | user123  | user   |
+| Username | Password | Роли | Права |
+|----------|----------|------|-------|
+| `superadmin` | `superadmin123` | `["USER", "ADMIN", "SUPER_ADMIN"]` | Полный доступ |
+| `admin` | `admin123` | `["USER", "ADMIN"]` | Управление пользователями + всё USER |
+| `user` | `user123` | `["USER"]` | Просмотр, отзывы, оплата |
 
 ### Эндпоинты аутентификации
 
@@ -83,7 +108,7 @@ import requests
 
 response = requests.post(
     "http://127.0.0.1:8000/auth/login",
-    json={"username": "admin", "password": "admin123"}
+    json={"username": "superadmin", "password": "superadmin123"}
 )
 
 # Ответ:
@@ -136,21 +161,55 @@ response = requests.get(
 # {
 #   "valid": true,
 #   "token_type": "access",
-#   "user_id": "admin",
+#   "user_id": "superadmin",
 #   "expired": false,
 #   "revoked": false,
-#   "expires_at": "2026-08-31T15:26:51.603924",
+#   "expires_at": "2026-09-23T15:26:51.603924",
 #   "message": "Токен валиден"
+# }
+```
+
+#### `GET /auth/me` — Профиль текущего пользователя
+
+Возвращает массив ролей, высшую роль и карту разрешений.
+
+```python
+access_token = "полученный_access_токен"
+
+response = requests.get(
+    "http://127.0.0.1:8000/auth/me",
+    headers={"Authorization": f"Bearer {access_token}"}
+)
+
+# Ответ:
+# {
+#   "user_id": "superadmin",
+#   "roles": ["USER", "ADMIN", "SUPER_ADMIN"],
+#   "highestRole": "SUPER_ADMIN",
+#   "permissions": {
+#     "entities:read": true,
+#     "entities:create": true,
+#     "entities:update": true,
+#     "entities:delete": true,
+#     "reviews:create": true,
+#     "tickets:pay": true,
+#     "users:read": true,
+#     "users:update": true,
+#     "users:delete": true,
+#     "genres:create": true,
+#     "genres:update": true,
+#     "genres:delete": true
+#   },
+#   "roleHierarchy": { ... },
+#   "allRoles": ["USER", "ADMIN", "SUPER_ADMIN"]
 # }
 ```
 
 #### `GET /protected/data` — Защищённый ресурс
 
-Требует валидный Bearer access токен.
+Требует валидный Bearer access токен. Возвращает массив ролей и permissions.
 
 ```python
-access_token = "полученный_access_токен"
-
 response = requests.get(
     "http://127.0.0.1:8000/protected/data",
     headers={"Authorization": f"Bearer {access_token}"}
@@ -159,18 +218,37 @@ response = requests.get(
 # Ответ:
 # {
 #   "message": "Доступ к защищённым данным получен!",
-#   "user_id": "admin",
-#   "role": "admin",
+#   "user_id": "superadmin",
+#   "roles": ["USER", "ADMIN", "SUPER_ADMIN"],
+#   "highestRole": "SUPER_ADMIN",
+#   "permissions": { ... },
 #   "sensitive_data": {
 #     "api_key": "demo-key-12345",
 #     "user_profile": {
-#       "id": "admin",
-#       "role": "admin",
-#       "permissions": ["read", "write"]
+#       "id": "superadmin",
+#       "roles": ["USER", "ADMIN", "SUPER_ADMIN"],
+#       "highestRole": "SUPER_ADMIN"
 #     }
 #   }
 # }
 ```
+
+### Разделение эндпоинтов по доступу
+
+| Эндпоинт | Без токена | USER | ADMIN | SUPER_ADMIN |
+|----------|:-:|:-:|:-:|:-:|
+| `GET /` | ✅ | ✅ | ✅ | ✅ |
+| `GET /health` | ✅ | ✅ | ✅ | ✅ |
+| `GET /entities` | ✅ | ✅ | ✅ | ✅ |
+| `GET /entities/{id}` | ✅ | ✅ | ✅ | ✅ |
+| `POST /entities` | ❌ 401 | ❌ 403 | ❌ 403 | ✅ 201 |
+| `PUT /entities/{id}` | ❌ 401 | ❌ 403 | ❌ 403 | ✅ 200 |
+| `DELETE /entities/{id}` | ❌ 401 | ❌ 403 | ❌ 403 | ✅ 200 |
+| `POST /booking` | ✅ | ✅ | ✅ | ✅ |
+| `GET /booking/{id}` | ✅ | ✅ | ✅ | ✅ |
+| `DELETE /booking/{id}` | ✅ | ✅ | ✅ | ✅ |
+| `GET /protected/data` | ❌ 401 | ✅ 200 | ✅ 200 | ✅ 200 |
+| `GET /auth/me` | ❌ 401 | ✅ 200 | ✅ 200 | ✅ 200 |
 
 ### Сценарии для тренировки
 
@@ -178,9 +256,11 @@ response = requests.get(
 2. **Использование токена** — запрос защищённых данных с Bearer авторизацией
 3. **Истечение access токена** — подождать 5 минут и получить 401
 4. **Обновление токенов** — использовать refresh токен для получения новой пары
-5. **Ротация refresh токена** — стар refresh токен становится невалидным после обновления
+5. **Ротация refresh токена** — старый refresh токен становится невалидным после обновления
 6. **Истечение refresh токена** — подождать 60 минут и потребовать повторный вход
 7. **Отзыв токена** — logout и немедленная невалидность токена
+8. **Проверка ролей** — `/auth/me` возвращает массив ролей и permissions
+9. **RBAC** — USER/ADMIN не могут создавать/удалять сущности (403)
 
 ---
 
@@ -196,9 +276,18 @@ import requests
 MOCK_SERVER_URL = "http://127.0.0.1:8000"
 
 def test_create_entity():
+    # Получаем токен SUPER_ADMIN
+    login_resp = requests.post(
+        f"{MOCK_SERVER_URL}/auth/login",
+        json={"username": "superadmin", "password": "superadmin123"}
+    )
+    token = login_resp.json()["access_token"]
+    
+    # Создаём сущность
     response = requests.post(
         f"{MOCK_SERVER_URL}/entities",
-        json={"name": "Test"}
+        json={"name": "Test"},
+        headers={"Authorization": f"Bearer {token}"}
     )
     assert response.status_code == 201
 ```
@@ -213,6 +302,7 @@ def test_create_entity():
 ✅ **Легко запустить** - один раз запустил, используешь везде  
 ✅ **JWT аутентификация** - полный цикл OAuth 2.0  
 ✅ **Ротация токенов** - безопасность сессий  
+✅ **Role-Based Access Control** - иерархическая система ролей  
 
 ---
 
@@ -253,7 +343,7 @@ Swagger UI доступен по адресу: http://127.0.0.1:8000/docs
 
 ### Эндпоинты:
 
-**POST /booking** - Создание бронировани��
+**POST /booking** - Создание бронирования
 ```python
 import requests
 
@@ -382,7 +472,7 @@ curl http://127.0.0.1:8000/inspector/history/clear
 ## 🧪 Запуск тестов
 
 ```bash
-# Запустить все тесты
+# Запустить все тесты (62 шт.)
 pytest test/test_api.py -v
 
 # Запустить только позитивные тесты
@@ -394,6 +484,10 @@ pytest test/test_api.py::TestNegative -v
 # Запустить тесты аутентификации
 pytest test/test_api.py::TestAuthPositive -v
 pytest test/test_api.py::TestAuthNegative -v
+
+# Запустить тесты ролевой системы (RBAC)
+pytest test/test_api.py::TestRolesPositive -v
+pytest test/test_api.py::TestRolesNegative -v
 ```
 
 Подробнее: [RUN_TESTS.md](RUN_TESTS.md)
@@ -422,7 +516,7 @@ git status
 git add .
 
 # Создать коммит с описанием
-git commit -m "Enhanced Mock Server v2.0 - JWT auth, persistent storage, validation"
+git commit -m "Enhanced Mock Server v2.0 - JWT auth, RBAC, persistent storage, validation"
 ```
 
 ### Загрузка на удалённый репозиторий
@@ -445,13 +539,16 @@ git add mock_server.py
 git add -A
 
 # Коммит с подробным описанием
-git commit -m "Add JWT authentication with refresh token rotation
+git commit -m "Add JWT authentication with RBAC and refresh token rotation
 
 - Added login endpoint with access/refresh tokens
-- Implemented token rotation on refresh
+- Implemented role hierarchy: USER, ADMIN, SUPER_ADMIN
+- Added token rotation on refresh
 - Added protected resource endpoint
+- Added /auth/me profile endpoint
+- Added granular permissions (entities:crUD, users:crUD, etc.)
 - Added token validation and revocation
-- 14 new auth tests (7 positive, 7 negative)"
+- 62 tests (23 positive, 6 negative, 15 auth, 20 RBAC)"
 
 # Загрузить изменения
 git push

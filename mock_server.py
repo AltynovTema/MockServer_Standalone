@@ -20,9 +20,13 @@ from pydantic import BaseModel, Field
 from typing import Optional, Dict, Any
 
 from data_store import DataStore, RequestHistoryStore, TokenStore
-from validators import EntityValidator, RequestValidator, ValidationError, TokenUtils
+from validators import (
+    EntityValidator, RequestValidator, ValidationError, TokenUtils,
+    ROLE_HIERARCHY, ROLE_ORDER, ROLE_PERMISSIONS,
+    get_highest_role, has_permission, get_user_permissions,
+    RoleValidator, PermissionDeniedError,
+)
 from fastapi import Depends
-from validators import EntityValidator, RequestValidator, ValidationError
 
 # Инициализация приложения
 app = FastAPI(
@@ -59,7 +63,7 @@ async def get_current_user(
     1. Проверку JWT подписи и срока действия через python-jose
     2. Проверку что токен не отозван через TokenStore
     
-    Возвращает словарь с user_id и ролью.
+    Возвращает словарь с user_id, roles (массив), и highestRole.
     Выбрасывает HTTPException 401 при любой ошибке.
     """
     if not authorization:
@@ -98,11 +102,69 @@ async def get_current_user(
             headers={"WWW-Authenticate": "Bearer"},
         )
     
+    # Извлекаем роли из payload
+    roles = payload.get("roles", ["USER"])
+    if isinstance(roles, str):
+        roles = [roles]
+    
     return {
         "user_id": payload.get("sub"),
-        "role": payload.get("role", "user"),
+        "roles": roles,
+        "highestRole": get_highest_role(roles),
         "token_jti": token_data["token_id"],
     }
+
+
+# ============================================================================
+# ЗАВИСИМОСТЬ ДЛЯ ПРОВЕРКИ РОЛЕВОГО ДОСТУПА
+# ============================================================================
+
+
+def require_role(required_role: str):
+    """
+    Фабрика зависимости для проверки роли.
+    
+    Проверяет, что у пользователя есть требуемая роль или выше.
+    
+    Пример:
+        @app.get("/admin")
+        async def admin_endpoint(user=Depends(require_role("ADMIN"))):
+            ...
+    """
+    async def role_checker(current_user: Dict[str, Any] = Depends(get_current_user)):
+        required_level = ROLE_HIERARCHY.get(required_role.upper(), -1)
+        user_level = ROLE_HIERARCHY.get(current_user["highestRole"], 0)
+        
+        if user_level < required_level:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail=f"Access denied. Required role: '{required_role}'. Your highest role: '{current_user['highestRole']}'",
+            )
+        
+        return current_user
+    
+    return role_checker
+
+
+def require_permission(permission: str):
+    """
+    Фабрика зависимости для проверки конкретного разрешения.
+    
+    Пример:
+        @app.post("/entities")
+        async def create_entity(user=Depends(require_permission("entities:create"))):
+            ...
+    """
+    async def permission_checker(current_user: Dict[str, Any] = Depends(get_current_user)):
+        if not has_permission(current_user["roles"], permission):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail=f"Access denied. Required permission: '{permission}'. Your highest role: '{current_user['highestRole']}'",
+            )
+        
+        return current_user
+    
+    return permission_checker
 
 # ============================================================================
 # КОНФИГУРАЦИЯ АВТОРИЗАЦИИ
@@ -116,15 +178,22 @@ JWT_ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "5"))
 REFRESH_TOKEN_EXPIRE_MINUTES = int(os.getenv("REFRESH_TOKEN_EXPIRE_MINUTES", "60"))
 
-# Тестовые пользователи (для обучения)
+# Тестовые пользователи с массивом ролей (иерархическая система)
+# SUPER_ADMIN может иметь ["USER", "ADMIN", "SUPER_ADMIN"]
+# ADMIN может иметь ["USER", "ADMIN"]
+# USER имеет ["USER"]
 TEST_USERS = {
+    "superadmin": {
+        "password": "superadmin123",
+        "roles": ["USER", "ADMIN", "SUPER_ADMIN"],
+    },
     "admin": {
         "password": "admin123",
-        "role": "admin",
+        "roles": ["USER", "ADMIN"],
     },
     "user": {
         "password": "user123",
-        "role": "user",
+        "roles": ["USER"],
     },
 }
 
@@ -274,13 +343,14 @@ async def log_requests(request: Request, call_next):
 # ============================================================================
 
 @app.post("/entities", status_code=201)
-async def create_entity(request: Request):
+async def create_entity(
+    request: Request,
+    user: Dict[str, Any] = Depends(require_permission("entities:create"))
+):
     """
     Создание новой сущности с валидацией
     
-    Поддерживает как JSON, так и form-encoded данные
-    
-    Возвращает статус 201 Created и сгенерированный ID
+    🔒 **Требует роль:** SUPER_ADMIN (permission: entities:create)
     """
     try:
         # Определяем тип контента и парсим данные соответствующим образом
@@ -316,7 +386,9 @@ async def create_entity(request: Request):
         return {
             "id": entity_id,
             "message": "Entity created successfully",
-            "entity": new_entity
+            "entity": new_entity,
+            "userRoles": user["roles"],
+            "highestRole": user["highestRole"],
         }
         
     except ValidationError as e:
@@ -401,13 +473,15 @@ async def list_entities(
 
 
 @app.put("/entities/{entity_id}")
-async def update_entity(entity_id: str, update_data: EntityUpdate):
+async def update_entity(
+    entity_id: str,
+    update_data: EntityUpdate,
+    user: Dict[str, Any] = Depends(require_permission("entities:update"))
+):
     """
     Обновление сущности по ID
     
-    - **entity_id**: UUID сущности
-    - **name**: новое имя (опционально)
-    - **data**: новые данные (опционально)
+    🔒 **Требует роль:** SUPER_ADMIN (permission: entities:update)
     """
     try:
         # Проверяем существование
@@ -426,7 +500,9 @@ async def update_entity(entity_id: str, update_data: EntityUpdate):
         
         return {
             "message": "Entity updated successfully",
-            "entity": updated_entity
+            "entity": updated_entity,
+            "userRoles": user["roles"],
+            "highestRole": user["highestRole"],
         }
         
     except ValidationError as e:
@@ -438,11 +514,14 @@ async def update_entity(entity_id: str, update_data: EntityUpdate):
 
 
 @app.delete("/entities/{entity_id}")
-async def delete_entity(entity_id: str):
+async def delete_entity(
+    entity_id: str,
+    user: Dict[str, Any] = Depends(require_permission("entities:delete"))
+):
     """
     Удаление сущности по ID
     
-    - **entity_id**: UUID сущности
+    🔒 **Требует роль:** SUPER_ADMIN (permission: entities:delete)
     """
     deleted_entity = entity_store.delete(entity_id)
     
@@ -454,7 +533,9 @@ async def delete_entity(entity_id: str):
     
     return {
         "message": "Entity deleted successfully",
-        "entity": deleted_entity
+        "entity": deleted_entity,
+        "userRoles": user["roles"],
+        "highestRole": user["highestRole"],
     }
 
 
@@ -602,7 +683,7 @@ async def login(request: LoginRequest):
     """
     Аутентификация пользователя и получение пары токенов.
     
-    - **username**: имя пользователя (admin или user)
+    - **username**: имя пользователя (superadmin, admin, или user)
     - **password**: пароль
     
     Возвращает:
@@ -612,8 +693,11 @@ async def login(request: LoginRequest):
     - expires_in: время жизни access токена в секундах
     
     Тестовые пользователи:
-    - admin / admin123
-    - user / user123
+    - superadmin / superadmin123  → роли: ["USER", "ADMIN", "SUPER_ADMIN"]
+    - admin / admin123            → роли: ["USER", "ADMIN"]
+    - user / user123              → роли: ["USER"]
+    
+    Роли вложены: SUPER_ADMIN включает все права ADMIN, ADMIN включает все права USER.
     """
     # Проверяем учётные данные
     user_data = TEST_USERS.get(request.username)
@@ -624,19 +708,20 @@ async def login(request: LoginRequest):
         )
     
     user_id = request.username
-    role = user_data["role"]
+    roles = user_data["roles"]
+    highest_role = get_highest_role(roles)
     
     # Вычисляем время истечения
     access_expires = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     refresh_expires = datetime.utcnow() + timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES)
     
-    # Создаём JWT токены
+    # Создаём JWT токены с массивом ролей
     access_token = TokenUtils.create_access_token(
-        data={"sub": user_id, "role": role},
+        data={"sub": user_id, "roles": roles},
         expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     )
     refresh_token = TokenUtils.create_refresh_token(
-        data={"sub": user_id, "role": role},
+        data={"sub": user_id, "roles": roles},
         expires_delta=timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES),
     )
     
@@ -644,7 +729,7 @@ async def login(request: LoginRequest):
     token_store.store_access_token(access_token, user_id, access_expires)
     token_store.store_refresh_token(refresh_token, user_id, refresh_expires)
     
-    print(f"✅ Пользователь '{user_id}' вошёл в систему")
+    print(f"✅ Пользователь '{user_id}' вошёл в систему (роли: {roles}, высшая: {highest_role})")
     
     return TokenResponse(
         access_token=access_token,
@@ -688,12 +773,17 @@ async def refresh_token_endpoint(request: TokenRefreshRequest):
     access_expires = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     refresh_expires = datetime.utcnow() + timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES)
     
+    # Извлекаем роли из оригинального payload
+    roles = payload.get("roles", ["USER"])
+    if isinstance(roles, str):
+        roles = [roles]
+    
     new_access = TokenUtils.create_access_token(
-        data={"sub": user_id, "role": payload.get("role", "user")},
+        data={"sub": user_id, "roles": roles},
         expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     )
     new_refresh = TokenUtils.create_refresh_token(
-        data={"sub": user_id, "role": payload.get("role", "user")},
+        data={"sub": user_id, "roles": roles},
         expires_delta=timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES),
     )
     
@@ -802,6 +892,37 @@ async def validate_token(token: str = Query(..., description="Токен для 
     )
 
 
+@app.get("/auth/me", status_code=200)
+async def get_current_user_profile(current_user: Dict[str, Any] = Depends(get_current_user)):
+    """
+    Получение профиля текущего авторизованного пользователя.
+    
+    Возвращает:
+    - user_id: ID пользователя
+    - roles: массив ролей пользователя
+    - highestRole: самая высокая роль
+    - permissions: карта разрешений для высшей роли
+    - roleHierarchy: полная иерархия ролей системы
+    """
+    user_permissions = get_user_permissions(current_user["roles"])
+    
+    return {
+        "user_id": current_user["user_id"],
+        "roles": current_user["roles"],
+        "highestRole": current_user["highestRole"],
+        "permissions": user_permissions,
+        "roleHierarchy": {
+            "levels": {
+                "USER": 0,
+                "ADMIN": 1,
+                "SUPER_ADMIN": 2,
+            },
+            "description": "Каждая следующая роль включает все права предыдущих",
+        },
+        "allRoles": ROLE_ORDER,
+    }
+
+
 @app.get("/protected/data")
 async def get_protected_data(current_user: Dict[str, Any] = Depends(get_current_user)):
     """
@@ -810,16 +931,19 @@ async def get_protected_data(current_user: Dict[str, Any] = Depends(get_current_
     Демонстрирует использование FastAPI Depends() для защиты эндпоинта.
     Возвращает 401 при отсутствии или невалидном токене.
     """
+    user_permissions = get_user_permissions(current_user["roles"])
     return {
         "message": "Доступ к защищённым данным получен!",
         "user_id": current_user["user_id"],
-        "role": current_user["role"],
+        "roles": current_user["roles"],
+        "highestRole": current_user["highestRole"],
+        "permissions": user_permissions,
         "sensitive_data": {
             "api_key": "demo-key-12345",
             "user_profile": {
                 "id": current_user["user_id"],
-                "role": current_user["role"],
-                "permissions": ["read", "write"] if current_user["role"] == "admin" else ["read"],
+                "roles": current_user["roles"],
+                "highestRole": current_user["highestRole"],
             },
         },
     }
@@ -845,27 +969,49 @@ async def root():
             "Swagger UI documentation",
             "JWT authentication (access + refresh tokens)",
             "Token rotation on refresh",
-            "Protected resource endpoints"
+            "Protected resource endpoints",
+            "Role-based access control (RBAC)"
         ],
+        "roles": {
+            "hierarchy": {
+                "USER": 0,
+                "ADMIN": 1,
+                "SUPER_ADMIN": 2,
+            },
+            "description": "Each higher role includes all permissions of lower roles",
+            "permissions": ROLE_PERMISSIONS,
+            "testUsers": {
+                "superadmin": {"roles": ["USER", "ADMIN", "SUPER_ADMIN"], "description": "Full access"},
+                "admin": {"roles": ["USER", "ADMIN"], "description": "User management + everything USER can do"},
+                "user": {"roles": ["USER"], "description": "Basic actions: view films, reviews, pay tickets"},
+            }
+        },
         "endpoints": {
-            "POST /entities": "Создать новую сущность (с валидацией)",
-            "GET /entities": "Получить список всех сущностей (с пагинацией)",
-            "GET /entities/{id}": "Получить сущность по ID",
-            "PUT /entities/{id}": "Обновить сущность по ID",
-            "DELETE /entities/{id}": "Удалить сущность по ID",
-            "GET /entities/search": "Поиск с множественными фильтрами",
-            "POST /booking": "Создать бронирование",
-            "GET /booking/{id}": "Получить бронирование по ID",
-            "DELETE /booking/{id}": "Удалить бронирование",
-            "GET /inspector/history": "Просмотреть историю запросов",
-            "GET /inspector/history/clear": "Очистить историю запросов",
-            "GET /inspector/stats": "Статистика сервера",
-            "GET /docs": "Swagger UI интерфейс",
-            "POST /auth/login": "Аутентификация и получение токенов",
-            "POST /auth/refresh": "Обновление токенов (ротация)",
-            "POST /auth/logout": "Выход - отзыв токена",
-            "GET /auth/validate": "Проверка статуса токена",
-            "GET /protected/data": "Защищённый ресурс (требуется Bearer токен)"
+            "public": {
+                "GET /": "Server info",
+                "GET /health": "Health check",
+                "GET /entities": "List entities (public)",
+                "GET /entities/{id}": "Get entity by ID (public)",
+                "GET /entities/search": "Search entities (public)",
+                "GET /inspector/history": "Request history (public)",
+                "GET /inspector/history/clear": "Clear history (public)",
+                "GET /inspector/stats": "Server stats (public)",
+                "POST /auth/login": "Login and get tokens",
+                "POST /auth/refresh": "Refresh tokens",
+                "POST /auth/logout": "Logout - revoke token",
+                "GET /auth/validate": "Validate token",
+                "GET /auth/me": "Get current user profile (requires auth)",
+                "GET /booking/{id}": "Get booking by ID",
+                "POST /booking": "Create booking",
+            },
+            "requires_auth": {
+                "GET /protected/data": "Protected data (any authenticated user)",
+            },
+            "requires_super_admin": {
+                "POST /entities": "Create entity (SUPER_ADMIN only)",
+                "PUT /entities/{id}": "Update entity (SUPER_ADMIN only)",
+                "DELETE /entities/{id}": "Delete entity (SUPER_ADMIN only)",
+            }
         },
         "swagger_ui": "http://127.0.0.1:8000/docs",
         "request_history": "http://127.0.0.1:8000/inspector/history",
@@ -911,6 +1057,7 @@ if __name__ == "__main__":
     print("🏠 Главная страница:   http://127.0.0.1:8000/")
     print("🔐 Аутентификация:     http://127.0.0.1:8000/auth/login")
     print("🔄 Обновление токенов: http://127.0.0.1:8000/auth/refresh")
+    print("👤 Профиль пользователя: http://127.0.0.1:8000/auth/me")
     print("🔒 Защищённые данные:  http://127.0.0.1:8000/protected/data")
     print("💾 Хранилище:          data/entities.json")
     print("📝 История:            data/request_history.json")
@@ -926,6 +1073,10 @@ if __name__ == "__main__":
     print("   ✅ Ротация refresh токенов")
     print("   ✅ Защищённые ресурсы с Bearer авторизацией")
     print("   ✅ Проверка статуса токенов")
+    print("   ✅ Role-Based Access Control (RBAC)")
+    print("      - USER: просмотр, отзывы, оплата")
+    print("      - ADMIN: + управление пользователями")
+    print("      - SUPER_ADMIN: + создание/удаление сущностей")
     print("=" * 70)
     
     uvicorn.run(app, host="127.0.0.1", port=8000)

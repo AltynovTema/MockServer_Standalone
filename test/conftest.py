@@ -1,4 +1,5 @@
 import pytest
+import requests
 
 
 @pytest.fixture(scope="module")
@@ -11,6 +12,39 @@ def base_url(request):
 def url_fast_api(request):
     url = "http://127.0.0.1:8000"
     return url
+
+
+@pytest.fixture(scope="module")
+def superadmin_token(url_fast_api):
+    """Получает access токен для superadmin с ролями [USER, ADMIN, SUPER_ADMIN]"""
+    response = requests.post(
+        f"{url_fast_api}/auth/login",
+        json={"username": "superadmin", "password": "superadmin123"},
+    )
+    assert response.status_code == 200, f"Login failed: {response.text}"
+    return response.json()["access_token"]
+
+
+@pytest.fixture(scope="module")
+def admin_token(url_fast_api):
+    """Получает access токен для admin с ролями [USER, ADMIN]"""
+    response = requests.post(
+        f"{url_fast_api}/auth/login",
+        json={"username": "admin", "password": "admin123"},
+    )
+    assert response.status_code == 200, f"Login failed: {response.text}"
+    return response.json()["access_token"]
+
+
+@pytest.fixture(scope="module")
+def user_token(url_fast_api):
+    """Получает access токен для user с ролью [USER]"""
+    response = requests.post(
+        f"{url_fast_api}/auth/login",
+        json={"username": "user", "password": "user123"},
+    )
+    assert response.status_code == 200, f"Login failed: {response.text}"
+    return response.json()["access_token"]
 
 
 @pytest.fixture
